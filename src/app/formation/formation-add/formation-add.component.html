@@ -1,0 +1,53 @@
+<h3>Create Formation</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" required [(ngModel)]="formation.id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text" class="form-control" id="titre" required [(ngModel)]="formation.titre" name="titre">
+    </div>
+    <div class="form-group">
+      <label for="">Type</label>
+      <select name="select" [(ngModel)]="formation.type_formation"  class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un type</option>
+        <option value="Nationale">  Nationale </option>
+        <option value="Internationale">  Internationale </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="annee">Année</label>
+      <input type="number" class="form-control" id="annee" required [(ngModel)]="formation.annee" name="annee">
+    </div>
+    <div class="form-group">
+      <label for="nbSession">Nombre sessions</label>
+      <input type="number" class="form-control" id="nbSession" required [(ngModel)]="formation.nbSession" name="nbSession">
+    </div>
+    <div class="form-group">
+      <label for="duree">Durée (/Jour)</label>
+      <input type="number" class="form-control" id="duree" required [(ngModel)]="formation.duree" name="duree">
+    </div>
+    <div class="form-group">
+      <label for="budget">Budget</label>
+      <input type="number" class="form-control" id="budget" required [(ngModel)]="formation.budget" name="budget">
+    </div>
+    <div class="form-group">
+      <label>Domaine</label>
+      <select name="select" [(ngModel)]="formation.domaine"  (ngModelChange)="setNewDomaine($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner une Domaine</option>
+        <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

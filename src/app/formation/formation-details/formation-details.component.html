@@ -1,0 +1,30 @@
+<h2>Formation Details</h2>
+
+<hr/>
+<div *ngIf="formation">
+  <div>
+    <label><b>Id: </b></label> {{formation.id}}
+  </div>
+  <div>
+    <label><b>Titre: </b></label> {{formation.titre}}
+  </div>
+  <div>
+    <label><b>Type: </b></label> {{formation.type_formation}}
+  </div>
+  <div>
+    <label><b>Nombre de sessions: </b></label> {{formation.nbSession}}
+  </div>
+  <div>
+    <label><b>Durée: </b></label> {{formation.duree}}
+  </div>
+  <div>
+    <label><b>Budget: </b></label> {{formation.budget}}
+  </div>
+  <div>
+    <label><b>Domaine: </b></label> {{formation.domaine.libelle}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Formations List</button><br>

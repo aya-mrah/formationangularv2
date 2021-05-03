@@ -1,0 +1,15 @@
+<h2>Pays Details</h2>
+
+<hr/>
+<div *ngIf="pays">
+  <div>
+    <label><b>Id: </b></label> {{pays.id}}
+  </div>
+  <div>
+    <label><b>Libelle: </b></label> {{pays.libelle}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Pays List</button><br>

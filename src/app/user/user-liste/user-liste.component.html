@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>User List</h2>
+    <button routerLink="/addUser"  class="btn btn-primary">Add User</button>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Code</th>
+        <th>Email</th>
+        <th>username</th>
+        <th>Mot de passe</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.id}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.username}}</td>
+      <td *ngFor="let role of user.roles">
+        <p>    {{ role.name }}</p>
+      </td>
+
+        <td>
+          <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+          <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="updateUser(user.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

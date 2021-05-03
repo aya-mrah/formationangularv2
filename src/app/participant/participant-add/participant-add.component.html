@@ -1,0 +1,67 @@
+<h3>Create Formateur</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" required [(ngModel)]="participant.id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" class="form-control" id="nom" required [(ngModel)]="participant.nom" name="nom">
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" class="form-control" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" required [(ngModel)]="participant.mail" name="email">
+    </div>
+    <div class="form-group">
+      <label for="tel">Tel</label>
+      <input type="number" class="form-control" id="tel" required [(ngModel)]="participant.tel" name="tel">
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <select name="select" [(ngModel)]="participant.type"  class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un type</option>
+        <option value="Nationale">  Nationale </option>
+        <option value="Internationale">  Internationale </option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+       <label for="profil">Profil</label>
+       <input type="number" class="form-control" id="profil" required [(ngModel)]="participant.profil.id" name="profil">
+     </div> -->
+    <div class="form-group">
+      <label>Profil</label>
+      <select name="select" [(ngModel)]="participant.profil"  (ngModelChange)="setNewProfil($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un profil</option>
+        <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Pays</label>
+      <select name="select" [(ngModel)]="participant.pays"  (ngModelChange)="setNewPays($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un pays</option>
+        <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Organisme</label>
+      <select name="select" [(ngModel)]="participant.organisme"   class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un organisme</option>
+        <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

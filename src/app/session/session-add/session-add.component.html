@@ -1,0 +1,53 @@
+<h3>Create Session</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" required [(ngModel)]="session.id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="date_deb">Date debut</label>
+      <input type="date" class="form-control" id="date_deb" required [(ngModel)]="session.date_deb" name="date_deb">
+    </div>
+    <div class="form-group">
+      <label for="date_fin">Date fin</label>
+      <input type="date" class="form-control" id="date_fin" required [(ngModel)]="session.date_fin" name="date_fin">
+    </div>
+    <div class="form-group">
+      <label for="nbparticipant">Nombre participants</label>
+      <input type="number" class="form-control" id="nbparticipant" required [(ngModel)]="session.nbparticipant" name="nbparticipant">
+    </div>
+    <div class="form-group">
+      <label for="lieu">Lieu</label>
+      <input type="text" class="form-control" id="lieu" required [(ngModel)]="session.lieu" name="lieu">
+    </div>
+    <div class="form-group">
+      <label>Formation</label>
+      <select name="select" [(ngModel)]="session.formation"  (ngModelChange)="setNewFormation($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner une formation</option>
+        <option *ngFor="let formation of formations"  [ngValue]="formation" >  {{formation.titre}} </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Organisme</label>
+      <select name="select" [(ngModel)]="session.organisme"  (ngModelChange)="setNewOrganisme($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un organisme</option>
+        <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Formateur</label>
+      <select name="select" [(ngModel)]="session.formateur"  (ngModelChange)="setNewFormateur($event)" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un formateur</option>
+        <option *ngFor="let formateur of formateurs"  [ngValue]="formateur" >  {{formateur.nom}} {{formateur.prenom}} </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

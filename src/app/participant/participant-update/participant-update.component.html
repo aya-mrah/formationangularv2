@@ -1,0 +1,60 @@
+<h3>Update Participant</h3>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" required [(ngModel)]="participant.id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" class="form-control" id="nom" required [(ngModel)]="participant.nom" name="nom">
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" class="form-control" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" required [(ngModel)]="participant.mail" name="email">
+    </div>
+    <div class="form-group">
+      <label for="tel">Tel</label>
+      <input type="text" class="form-control" id="tel" required [(ngModel)]="participant.tel" name="tel">
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <select name="select" [(ngModel)]="participant.type"  class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un type</option>
+        <option value="Nationale">  Nationale </option>
+        <option value="Internationale">  Internationale </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Profil</label>
+      <select name="select" [(ngModel)]="participant.profil"  class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un profil</option>
+        <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Pays</label>
+      <select name="select" [(ngModel)]="participant.pays" class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un pays</option>
+        <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Organisme</label>
+      <select name="select" [(ngModel)]="participant.organisme"   class="browser-default custom-select">
+        <option [ngValue]="undefined">Sélectionner un organisme</option>
+        <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
+      </select>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<h2>Participant Details</h2>
+
+<hr/>
+<div *ngIf="participant">
+  <div>
+    <label><b>Id: </b></label> {{participant.id}}
+  </div>
+  <div>
+    <label><b>Nom: </b></label> {{participant.nom}}
+  </div>
+  <div>
+    <label><b>Prénom: </b></label> {{participant.prenom}}
+  </div>
+  <div>
+    <label><b>Email: </b></label> {{participant.mail}}
+  </div>
+  <div>
+    <label><b>Tel: </b></label> {{participant.tel}}
+  </div>
+  <div>
+    <label><b>Type: </b></label> {{participant.type}}
+  </div>
+  <div>
+    <label><b>Pays: </b></label> {{participant.pays.libelle}}
+  </div>
+  <div>
+    <label><b>Profil: </b></label> {{participant.profil.libelle}}
+  </div>
+  <div>
+    <label><b>Organisme: </b></label> {{participant.organisme.libelle}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Participants List</button><br>

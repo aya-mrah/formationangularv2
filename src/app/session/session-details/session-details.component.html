@@ -1,0 +1,33 @@
+<h2>Session Details</h2>
+
+<hr/>
+<div *ngIf="session">
+  <div>
+    <label><b>Id: </b></label> {{session.id}}
+  </div>
+  <div>
+    <label><b>Date debut: </b></label> {{session.date_deb}}
+  </div>
+  <div>
+    <label><b>Date fin: </b></label> {{session.date_fin}}
+  </div>
+  <div>
+    <label><b>Nombre de participants: </b></label> {{session.nbparticipant}}
+  </div>
+  <div>
+    <label><b>Lieu: </b></label> {{session.lieu}}
+  </div>
+  <div>
+    <label><b>Formation: </b></label> {{session.formation.titre}}
+  </div>
+  <div>
+    <label><b>Organisme: </b></label> {{session.organisme.libelle}}
+  </div>
+  <div>
+    <label><b>Formateur: </b></label> {{session.formateur.prenom}} {{session.formateur.nom}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Sessions List</button><br>

@@ -1,0 +1,15 @@
+<h2>Organisme Details</h2>
+
+<hr/>
+<div *ngIf="organisme">
+  <div>
+    <label><b>Id: </b></label> {{organisme.id}}
+  </div>
+  <div>
+    <label><b>Libelle: </b></label> {{organisme.libelle}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Organisme List</button><br>

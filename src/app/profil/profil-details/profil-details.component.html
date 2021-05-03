@@ -1,0 +1,15 @@
+<h2>Profil Details</h2>
+
+<hr/>
+<div *ngIf="profil">
+  <div>
+    <label><b>Id: </b></label> {{profil.id}}
+  </div>
+  <div>
+    <label><b>Libelle: </b></label> {{profil.libelle}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Profil List</button><br>
