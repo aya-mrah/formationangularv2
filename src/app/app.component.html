@@ -1,65 +1,48 @@
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">FormAPP</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="userliste">User</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/domaineliste">domaine</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/organismeliste">Organisme</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/paysliste">Pays</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/profileliste">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/formateurliste">formateur liste</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/formationliste">formation liste</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/participantliste">Participant liste</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/sessionliste">Session liste</a>
-      </li>
-    </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
+<!----Header-->
 
-  <div class="container">
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" *ngIf="isLoggedIn" aria-label="Example icon-button with menu icon" mat-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>FormAp</span>
+  <span class="example-spacer"></span>
+  <button mat-flat-button color="primary" class="example-icon favorite-icon" id="reg" routerLink="register" *ngIf="!isLoggedIn">
+  Sign up
+  </button>
+  <button mat-flat-button color="primary" class="example-icon favorite-icon"  routerLink="login" *ngIf="!isLoggedIn">Login</button>
+  
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn"><mat-icon>settings</mat-icon></button>
+<mat-menu #menu="matMenu">
+<button mat-menu-item routerLink="profile" ><mat-icon>person_outline</mat-icon>Profil</button>
+<button mat-menu-item (click)="logout()"><mat-icon>input</mat-icon>Logout</button>
+</mat-menu>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" >
+  <mat-sidenav #sidenav mode="side" class="example-sidenav" >
+    <mat-nav-list>
+      <div class="profil-card">
+        <div class="header">
+          <h3>Hello {{ username }}</h3>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Activities</h3>
+      <a mat-list-item routerLinkAtive="list-item-active"  routerLink="/organismeliste" >Organismes</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/paysliste" >Pays</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/profileliste" >Profils</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/domaineliste" >Domaines</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="userliste" >Users</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/formationliste" >Formation</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/sessionliste" >Sessions</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/formateurliste" >Formateurs</a>
+      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/participantliste">Participants</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <!---Main Content-->
+  <mat-sidenav-content >
     <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-sidenav-content>
+  <mat-toolbar class="example-footer">@fares</mat-toolbar>
