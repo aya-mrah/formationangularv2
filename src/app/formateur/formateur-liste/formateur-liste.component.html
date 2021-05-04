@@ -92,15 +92,15 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="formateurDetails(element.id)">
-          <mat-icon>more_vert</mat-icon>
+          <mat-icon id="icon-green">more_vert</mat-icon>
           <span>Details</span>
         </button>
         <button mat-menu-item (click)="updateOrganisme(element.id)">
-          <mat-icon>update</mat-icon>
+          <mat-icon id="icon-blue">update</mat-icon>
           <span>Update</span>
         </button>
         <button mat-menu-item (click)="deleteFormateur(element.id)">
-          <mat-icon>delete</mat-icon>
+          <mat-icon id="icon-red">delete</mat-icon>
           <span>Delete</span>
         </button>
 

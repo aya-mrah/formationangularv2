@@ -519,3 +519,14 @@ label.valid {
     margin-bottom: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
+.btn-success {
+    color: #f8376;
+    background-color: #1f8376;
+    border-color:#1f8376;
+
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #1f8376;
+    border-color: #1f8376;
+}
