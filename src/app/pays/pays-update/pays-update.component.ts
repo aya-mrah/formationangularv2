@@ -11,7 +11,7 @@ import { PaysService } from 'src/app/service/pays.service';
 export class PaysUpdateComponent implements OnInit {
 
            id: number;
-           pays: Pays;
+           pays: any;
 
            constructor(private route: ActivatedRoute,private router: Router,
              private paysService: PaysService) { }
@@ -36,11 +36,12 @@ export class PaysUpdateComponent implements OnInit {
                  this.gotoList();
                }, error => console.log(error));
            }
+           //cc
 
            onSubmit() {
              this.updatePays();
            }
-
+ 
            gotoList() {
              this.router.navigate(['/paysliste']);
            }

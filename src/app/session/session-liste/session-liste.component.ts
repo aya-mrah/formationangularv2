@@ -7,6 +7,8 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import {FormationService} from "src/app/service/formation.service";
 import {Formation} from "src/app/model/formation";
+import { IFormateur } from 'src/app/formateur/formateur-liste/formateur-liste.component';
+import { IOrganisme } from 'src/app/organisme/organisme-liste/organisme-liste.component';
 
 
 export interface ISession {
@@ -17,13 +19,9 @@ export interface ISession {
     lieu: string;
 
     formation: Formation;
-    organisme: Organisme;
-    formateur: Formateur;
+    organisme: IOrganisme;
+    formateur: IFormateur;
 }
-const ELEMENT_DATA: ISession[] = [
-  {id: 12, date_deb: 1235,date_fin:65,nbparticipant:100,lieu:'sfax2',formation:1,organisme:1,formateur:1},
- {id: 9, date_deb: 845,date_fin:1454,nbparticipant:12,lieu:'Djerba',formation:1,organisme:1,formateur:1}];
-
 
 @Component({
   selector: 'app-session-liste',

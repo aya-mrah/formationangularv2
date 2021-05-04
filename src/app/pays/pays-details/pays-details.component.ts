@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PaysDetailsComponent implements OnInit {
 
              id: number;
-             pays: Pays;
+             pays: any;
 
              constructor(private route: ActivatedRoute,private router: Router,
                private paysService: PaysService) { }

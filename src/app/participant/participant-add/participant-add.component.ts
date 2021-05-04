@@ -8,12 +8,21 @@ import {PaysService} from "src/app/service/pays.service";
 import {Pays} from "src/app//model/pays";
 import {Profil} from "src/app//model/profil";
 import {ProfilService} from "src/app//service/profil.service";
+import {FormControl, Validators} from '@angular/forms'
 
+
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-participant-add',
   templateUrl: './participant-add.component.html',
   styleUrls: ['./participant-add.component.css']
 })
+
+
 export class ParticipantAddComponent implements OnInit {
 participant: Participant = new Participant();
   submitted = false;
@@ -24,7 +33,6 @@ participant: Participant = new Participant();
   currentProfil: Profil;
 
   organismes: any;
-
   constructor(private participantService: ParticipantService,
               private paysService: PaysService,
               private profilService: ProfilService,
@@ -32,9 +40,11 @@ participant: Participant = new Participant();
               private router: Router) { }
 
   save() {
+    this.participant.type="International"
     this.participantService
       .createParticipant(this.participant).subscribe(data => {
         this.participant = new Participant();
+        
         this.gotoList();
       },
       error => console.log(error));
@@ -71,4 +81,6 @@ participant: Participant = new Participant();
       this.organismes = data;
     });
   }
+
+
 }

@@ -12,4 +12,5 @@ mail: string;
 profil: Profil;
 pays: Pays;
 organisme: Organisme;
+type:string
 }

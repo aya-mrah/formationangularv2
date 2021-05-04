@@ -36,7 +36,7 @@ domaine: Domaine = new Domaine();
         onSubmit() {
           this.submitted = true;
           this.save();
-          gotoList();
+          this.gotoList();
         }
 
         gotoList(){

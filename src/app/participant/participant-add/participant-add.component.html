@@ -1,5 +1,60 @@
 <h3>Create Formateur</h3>
 <div [hidden]="submitted" style="width: 400px;">
+  
+  
+  <form class="example-form" (ngSubmit)="onSubmit()">
+
+  
+    <table class="example-full-width" cellspacing="0" width="200px" ><tr>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Nom</mat-label>
+        <input matInput class="form-control" id="nom" required [(ngModel)]="participant.nom" name="nom">
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <mat-label>Prenom</mat-label>
+        <input matInput type="text" class="form-control" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
+      </mat-form-field></td>
+    </tr></table><br>
+    <mat-form-field class="example-full-width"  width="300px">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="example@gmail.com" type="text" class="form-control" id="email" required [(ngModel)]="participant.mail" name="email">
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Téléphone</mat-label>
+      <span matPrefix>+216 &nbsp;</span>
+      <input type="tel" matInput placeholder="55-555-123" type="number" class="form-control" id="tel" required [(ngModel)]="participant.tel" name="tel">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Profil</mat-label>
+      <mat-select [(ngModel)]="participant.profil" name="profils">
+        <mat-option *ngFor="let profil of profils" [value]="profil">
+          {{profil.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Pays</mat-label>
+      <mat-select [(ngModel)]="participant.pays" name="pays">
+        <mat-option *ngFor="let pays of payss" [value]="pays">
+          {{pays.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Organisme</mat-label>
+      <mat-select [(ngModel)]="participant.organisme" name="organisme">
+        <mat-option *ngFor="let organisme of organismes" [value]="organisme">
+          {{organisme.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" class="btn btn-success">Submit</button>
+    </form>
+ 
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="id">Id</label>
@@ -65,3 +120,5 @@
   <h4>You submitted successfully!</h4>
   <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
 </div>
+
+

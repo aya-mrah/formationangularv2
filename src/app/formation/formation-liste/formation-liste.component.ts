@@ -4,6 +4,7 @@ import {Formation} from "src/app/model/Formation";
 import {Router} from "@angular/router";
 import {FormationService } from "src/app/service/formation.service";
 import {MatTableDataSource} from '@angular/material/table';
+import { IDomaine } from 'src/app/domaine/domaine-liste/domaine-liste.component';
 
 export interface IFormation {
    id: number;
@@ -13,7 +14,7 @@ export interface IFormation {
    annee:number;
    duree: number;
    budget: number;
-   domaine: Domaine;
+   domaine: IDomaine;
 
 }
 
