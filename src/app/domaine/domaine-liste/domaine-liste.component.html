@@ -7,7 +7,7 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Domaine" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="500px">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1050px">
 
   <!-- Position Column -->
   <ng-container matColumnDef="id">
@@ -29,15 +29,15 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="domaineDetails(element.id)">
-          <mat-icon>more_vert</mat-icon>
+          <mat-icon id="icon-green">more_vert</mat-icon>
           <span>Details</span>
         </button>
         <button mat-menu-item (click)="updateDomaine(element.id)">
-          <mat-icon>update</mat-icon>
+          <mat-icon id="icon-blue">update</mat-icon>
           <span>Update</span>
         </button>
         <button mat-menu-item (click)="deleteDomaine(element.id)">
-          <mat-icon>delete</mat-icon>
+          <mat-icon id="icon-red">delete</mat-icon>
           <span>Delete</span>
         </button>
 

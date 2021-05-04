@@ -1,6 +1,17 @@
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
-  </div>
-  
+<mat-card  class="example-card">
+<mat-card-content id="text" >
+  <mat-card id="card" class="example-card">
+    <mat-card-content id="text2" >
+      <h1>
+        Façonner un avenir meilleur
+      </h1>
+    </mat-card-content>
+  </mat-card>
+</mat-card-content>
+</mat-card>
+
+<!---Main Content-->
+<mat-sidenav-content >
+  <router-outlet></router-outlet>
+</mat-sidenav-content>
+<mat-toolbar class="example-footer">@fares</mat-toolbar>
