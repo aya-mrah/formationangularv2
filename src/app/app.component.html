@@ -6,13 +6,13 @@
   <button mat-icon-button class="example-icon" *ngIf="isLoggedIn" aria-label="Example icon-button with menu icon" mat-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>FormAp</span>
+  <span>Formation </span>
   <span class="example-spacer"></span>
-  <button mat-flat-button color="primary" class="example-icon favorite-icon" id="reg" routerLink="register" *ngIf="!isLoggedIn">
+  <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="reg" routerLink="register" *ngIf="!isLoggedIn">
   Sign up
   </button>
   <button mat-flat-button color="primary" class="example-icon favorite-icon"  routerLink="login" *ngIf="!isLoggedIn">Login</button>
-  
+
   <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn"><mat-icon>settings</mat-icon></button>
 <mat-menu #menu="matMenu">
 <button mat-menu-item routerLink="profile" ><mat-icon>person_outline</mat-icon>Profil</button>
@@ -20,29 +20,29 @@
 </mat-menu>
 </mat-toolbar>
 <mat-sidenav-container class="example-container" >
-  <mat-sidenav #sidenav mode="side" class="example-sidenav" >
+  <mat-sidenav #sidenav mode="side" class="example-sidenav"  >
     <mat-nav-list>
       <div class="profil-card">
         <div class="header">
-          <h3>Hello {{ username }}</h3>
+          <h4>welcome <mat-icon>mood</mat-icon></h4>
         </div>
       </div>
       <mat-divider></mat-divider>
-      <h3 matSubheader>Activities</h3>
-      <a mat-list-item routerLinkAtive="list-item-active"  routerLink="/organismeliste" >Organismes</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/paysliste" >Pays</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/profileliste" >Profils</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/domaineliste" >Domaines</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="userliste" >Users</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/formationliste" >Formation</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/sessionliste" >Sessions</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/formateurliste" >Formateurs</a>
-      <a mat-list-item routerLinkAtive="list-item-active" routerLink="/participantliste">Participants</a>
+      <h3 matSubheader>Activities </h3>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="showAdminBoard" routerLink="/organismeliste" ><mat-icon>location_city</mat-icon>&nbsp;Organismes</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="showAdminBoard"routerLink="/paysliste" ><mat-icon>golf_course</mat-icon>&nbsp;Pays</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="showAdminBoard"routerLink="/profileliste" ><mat-icon>account_circle</mat-icon>&nbsp;Profils</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="showAdminBoard" routerLink="/domaineliste" ><mat-icon>domain</mat-icon>&nbsp;Domaines</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="showAdminBoard"routerLink="userliste" ><mat-icon>assignment_ind</mat-icon>&nbsp;Users</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="!showAdminBoard" routerLink="/formationliste" ><mat-icon>assignment</mat-icon>&nbsp;Formation</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="!showAdminBoard" routerLink="/sessionliste" ><mat-icon>library_books</mat-icon>&nbsp;Sessions</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="!showAdminBoard" routerLink="/formateurliste" ><mat-icon>supervised_user_circle</mat-icon>&nbsp;Formateurs</a>
+      <a mat-list-item routerLinkAtive="list-item-active" *ngIf="!showAdminBoard" routerLink="/participantliste">	<mat-icon>pregnant_woman</mat-icon>&nbsp;Participants</a>
     </mat-nav-list>
   </mat-sidenav>
-  
+
   <!---Main Content-->
   <mat-sidenav-content >
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-  <mat-toolbar class="example-footer">@fares</mat-toolbar>
+  <mat-toolbar class="example-footer">@fares</mat-toolbar></mat-sidenav-container>

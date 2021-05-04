@@ -5,21 +5,21 @@
     left: 0;
     right: 0;
   }
-  
+
   .example-sidenav {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 200px;
   }
-  
+
   .example-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
   }
-  
+
   .example-footer {
     position: fixed;
     bottom: 0;
@@ -41,5 +41,21 @@
     border-radius: 50%;
   }
   #reg{
-      margin-left: 150px;
+      margin-left: 50px;
+  }
+  .c-sidebar {
+      color: #fff;
+      background: #e0e0e0;
+  }
+  .mat-drawer {
+      background-color: #dadada30;
+     color: #28a745;
+  }
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color: #673ab700;
+}
+
+  mat-toolbar.mat-primary {
+      background: #3ab7a6;
+      color: #fff;
   }

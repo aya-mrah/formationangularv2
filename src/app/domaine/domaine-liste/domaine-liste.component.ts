@@ -58,7 +58,7 @@ export class DomaineListeComponent implements OnInit {
         updateDomaine(id: number){
             this.router.navigate(['updateDomaine', id]);
           }
-
+//c
         addDomaine(){
             this.router.navigate(['adddomaine']);
               }
