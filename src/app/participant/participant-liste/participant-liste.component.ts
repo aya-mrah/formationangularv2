@@ -19,7 +19,6 @@ export interface IParticipant {
  pays: Pays;
  organisme: Organisme;
 
-
 }
 const ELEMENT_DATA: IParticipant[] = [
 ];
@@ -43,7 +42,7 @@ export class ParticipantListeComponent implements OnInit {
       this.reloadData();
         }
 
-        //cc
+
 
     reloadData() {
      let resp = this.participantService.getParticipantsList();
