@@ -8,6 +8,9 @@
   </button>
   <span>Formation </span>
   <span class="example-spacer"></span>
+  <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="home" routerLink="home" *ngIf="!isLoggedIn">
+    Home
+  </button>
   <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="reg" routerLink="register" *ngIf="!isLoggedIn">
   Sign up
   </button>
