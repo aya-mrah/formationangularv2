@@ -1,5 +1,5 @@
 <h3>Create Session</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="submitted" style="width: 700px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="id">Id</label>
@@ -43,6 +43,40 @@
         <option *ngFor="let formateur of formateurs"  [ngValue]="formateur" >  {{formateur.nom}} {{formateur.prenom}} </option>
       </select>
     </div>
+    <div>
+      <mat-form-field class="example-chip-list" >
+        <mat-label>Saisie participant</mat-label>
+        <!--List Autocomplete de participant-->
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+          <mat-option *ngFor="let participant of filteredParticipants | async" [value]="participant">
+            {{participant.mail}}
+          </mat-option>
+        </mat-autocomplete>
+        <!-- Les chips des participant selected-->
+        <mat-chip-list #chipList aria-label="Participant selection"  >
+          <mat-chip
+            *ngFor="let participant of participants"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(participant)">
+            {{participant.mail}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <!--Input de saisie de participant -->
+          <input
+          placeholder="New Participants..."
+            #participantInput
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      
+      </mat-form-field>
+  
+    </div>
+    
+
     <button type="submit" class="btn btn-success">Submit</button>
   </form>
 </div>

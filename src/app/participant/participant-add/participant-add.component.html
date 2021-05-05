@@ -1,4 +1,4 @@
-<h3>Create Formateur</h3>
+<h3>Ajouter participant</h3>
 <div [hidden]="submitted" style="width: 400px;">
   
   
@@ -54,7 +54,7 @@
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" class="btn btn-success">Submit</button>
     </form>
- 
+ <!---
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="id">Id</label>
@@ -84,10 +84,11 @@
         <option value="Internationale">  Internationale </option>
       </select>
     </div>
+    -->
     <!-- <div class="form-group">
        <label for="profil">Profil</label>
        <input type="number" class="form-control" id="profil" required [(ngModel)]="participant.profil.id" name="profil">
-     </div> -->
+     </div>
     <div class="form-group">
       <label>Profil</label>
       <select name="select" [(ngModel)]="participant.profil"  (ngModelChange)="setNewProfil($event)" class="browser-default custom-select">
@@ -118,7 +119,7 @@
 
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
-</div>
+  <button class="btn btn-success" (click)="newEmployee()">Add</button> 
+</div> -->
 
 
