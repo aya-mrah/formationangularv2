@@ -108,7 +108,7 @@ const routes: Routes = [
   { path: 'addsession', component: SessionAddComponent },
   { path: 'updatesession/:id', component: SessionUpdateComponent },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
