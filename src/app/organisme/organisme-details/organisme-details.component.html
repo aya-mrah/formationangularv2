@@ -1,23 +1,3 @@
-<h2>Organisme Details</h2>
-
-<hr/>
-<div *ngIf="organisme">
-  <div>
-    <label><b>Id: </b></label> {{organisme.id}}
-  </div>
-  <div>
-    <label><b>Libelle: </b></label> {{organisme.libelle}}
-  </div>
-</div>
-
-<br>
-<br>
-<button (click)="list()" class="btn btn-primary">Back to Organisme List</button><br>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +11,7 @@
 
   <!-- Title Page-->
   <title>Au Register Forms by Colorlib</title>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Icons font CSS-->
   <link href="/src/app/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
   <link href="/src/app/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -49,18 +29,20 @@
 <body>
 <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
   <div class="wrapper wrapper--w960">
-    <div class="card card-2">
+    <div class="card card-2" >
       <div class="card-heading"></div>
-      <div class="card-body">
+      <div class="card-body" style="padding: 80px 174px;">
         <h2 class="title">DETAILS ORGANISME</h2>
         <form>
           <div class="input-group">
             <!--    <input class="input--style-2" type="text" placeholder="Organisme" name="name" id="libelle" required [(ngModel)]="organisme.libelle">-->
                <div class="input--style-2"> <label><b> Nom: &nbsp;</b></label> {{organisme.libelle}}</div>
               </div>
-              <div class="p-t-30">
-                <button class="btn btn--radius btn--green" type="submit" (click)="list()" >Back to Organisme List</button>
-              </div>
+          <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit" (click)="list()">
+              <span class="glyphicon glyphicon-circle-arrow-left"></span> Back to Organisme List
+            </button>
+          </div>
             </form>
           </div>
         </div>

@@ -162,7 +162,7 @@ h6 {
 }
 
 .bg-red {
-  background: #DCDCDC;
+
 }
 
 /* ==========================================================================
@@ -254,7 +254,7 @@ input[type="date" i] {
 
 .daterangepicker td {
   width: 40px;
-  height: 30px;
+  height: 10px;
 }
 
 .daterangepicker {
@@ -490,11 +490,29 @@ input {
   .card-2 .card-heading {
     width: 100%;
     display: block;
-    padding-top: 300px;
+    padding-top: 100px;
     background-position: left center;
   }
   .card-2 .card-body {
     display: block;
     padding: 60px 50px;
   }
+}
+
+.p-t-180 {
+    padding-top: 78px;
+}
+
+
+
+
+body{
+
+background: #91C499;
+background: radial-gradient(circle, #a0a917 0%, #3ab7a626 100%);
+}
+
+
+.page-wrapper {
+    min-height: 91vh;
 }
