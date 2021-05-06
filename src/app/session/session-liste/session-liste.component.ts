@@ -51,8 +51,13 @@ export class SessionListeComponent implements OnInit {
 
   reloadData() {
        let resp = this.sessionService.getSessionsList();
-       resp.subscribe(report =>this.dataSource.data = report as ISession[])
-      
+       resp.subscribe(report =>{
+         this.dataSource.data = report as ISession[]
+         this.sessions = report as ISession[]
+         //console.log(this.sessions)
+        
+        })
+       // console.log(this.sessions[0].participants)
       }
 
 

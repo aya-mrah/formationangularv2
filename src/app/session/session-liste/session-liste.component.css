@@ -18,3 +18,14 @@ color: limegreen;
 .icon-large {
   font-size: 25px;
 }
+
+.mat-elevation-z8{
+  width: 100%;
+}
+
+.tablem{
+  margin: 2%;
+}
+.inputsearch{
+  width: 25%;
+}

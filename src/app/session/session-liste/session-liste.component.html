@@ -1,11 +1,11 @@
 <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addSession()">
   <mat-icon>add</mat-icon>
 </button>
-<mat-form-field>
+<mat-form-field class="inputsearch">
   <mat-label>Search</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Session" #input>
 </mat-form-field>
-
+<div class="tablem">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1050px">
 
   <!-- Position Column -->
@@ -102,7 +102,7 @@
   </tr>
 </table>
 
-
+</div>
 <mat-list>
   <div mat-subheader>Participant</div>
   <mat-list-item *ngFor="let participant of par">

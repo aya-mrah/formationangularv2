@@ -10,7 +10,7 @@ export class Session {
   date_fin: Date;
   nbparticipant: number;
   lieu: string;
-  participants:Participant[]
+  participants:Participant[];
   formation: Formation;
   organisme: Organisme;
   formateur: Formateur;
