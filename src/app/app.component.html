@@ -3,14 +3,13 @@
 <!----Header-->
 
 <mat-toolbar color="primary">
+  <button mat-flat-button color="primary"  routerLink="home" ><mat-icon>home</mat-icon>&nbsp;</button>
   <button mat-icon-button class="example-icon" *ngIf="isLoggedIn" aria-label="Example icon-button with menu icon" mat-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Formation </span>
+
   <span class="example-spacer"></span>
-  <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="home" routerLink="home" *ngIf="!isLoggedIn">
-    Home
-  </button>
   <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="reg" routerLink="register" *ngIf="!isLoggedIn">
   Sign up
   </button>
@@ -48,4 +47,4 @@
   <mat-sidenav-content >
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-  <mat-toolbar class="example-footer">@fares</mat-toolbar></mat-sidenav-container>
+</mat-sidenav-container>
