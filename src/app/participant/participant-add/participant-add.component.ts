@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ParticipantService} from "src/app/service/participant.service";
-import {Participant} from "src/app//model/Participant";
+import {Participant} from "src/app/model/Participant";
 import {Router} from "@angular/router";
 import {Organisme} from "src/app//model/organisme";
 import {OrganismeService} from "src/app/service/organisme.service";
@@ -44,7 +44,7 @@ participant: Participant = new Participant();
     this.participantService
       .createParticipant(this.participant).subscribe(data => {
         this.participant = new Participant();
-        
+
         this.gotoList();
       },
       error => console.log(error));
