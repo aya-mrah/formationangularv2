@@ -28,8 +28,8 @@ export class DomaineDetailsComponent implements OnInit {
                 }, error => console.log(error));
             }
 
-      /*      list(){
-              this.router.navigate(['domaines']);
-            }*/
+        list(){
+              this.router.navigate(['domaineliste']);
+            }
 
 }

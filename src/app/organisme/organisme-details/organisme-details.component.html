@@ -1,19 +1,19 @@
-<h2>Organisme Details</h2>
+<!-- <h2>Organisme Details</h2>
 
 <hr/>
 <div *ngIf="organisme">
-  <div>
-    <label><b>Id: </b></label> {{organisme.id}}
-  </div>
-  <div>
-    <label><b>Libelle: </b></label> {{organisme.libelle}}
-  </div>
+<div>
+  <label><b>Id: </b></label> {{organisme.id}}
+</div>
+<div>
+  <label><b>Libelle: </b></label> {{organisme.libelle}}
+</div>
 </div>
 
 <br>
 <br>
 <button (click)="list()" class="btn btn-primary">Back to Organisme List</button><br>
-
+-->
 
 
 
@@ -22,7 +22,7 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags-->
+<!-- Required meta tags-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Colorlib Templates">
@@ -31,7 +31,7 @@
 
   <!-- Title Page-->
   <title>Au Register Forms by Colorlib</title>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Icons font CSS-->
   <link href="/src/app/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
   <link href="/src/app/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -58,8 +58,11 @@
             <!--    <input class="input--style-2" type="text" placeholder="Organisme" name="name" id="libelle" required [(ngModel)]="organisme.libelle">-->
                <div class="input--style-2"> <label><b> Nom: &nbsp;</b></label> {{organisme.libelle}}</div>
               </div>
+
               <div class="p-t-30">
-                <button class="btn btn--radius btn--green" type="submit" (click)="list()" >Back to Organisme List</button>
+                <button class="btn btn--radius btn--green" type="submit" (click)="list()">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Back to Organisme List
+                </button>
               </div>
             </form>
           </div>

@@ -29,6 +29,7 @@ export class UserAddComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.gotoList();
       },
       err => {
         this.errorMessage = err.error.message;
