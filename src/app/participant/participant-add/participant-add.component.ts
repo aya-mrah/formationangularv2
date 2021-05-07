@@ -33,6 +33,7 @@ participant: Participant = new Participant();
   currentProfil: Profil;
 
   organismes: any;
+   currentOrganisme: Organisme;
   constructor(private participantService: ParticipantService,
               private paysService: PaysService,
               private profilService: ProfilService,
@@ -59,6 +60,11 @@ participant: Participant = new Participant();
     console.log(profil);
     this.currentProfil = profil;
   }
+
+   setNewOrganisme(organisme: Organisme): void {
+      console.log(organisme);
+      this.currentOrganisme = organisme;
+    }
 
   onSubmit() {
     this.submitted = true;

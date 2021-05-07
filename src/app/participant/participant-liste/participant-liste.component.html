@@ -1,133 +1,98 @@
-<!--<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2>Participants List</h2>
-    <button routerLink="/addparticipant"  class="btn btn-primary">Add Participant</button>
-  </div>
-  <div class="panel-body">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Email</th>
-        <th>Tel</th>
-        <th>Profil</th>
-        <th>Pays</th>
-        <th>Organisme</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let participant of participants| async">
-        <td>{{participant.id}}</td>
-        <td>{{participant.nom}}</td>
-        <td>{{participant.prenom}}</td>
-        <td>{{participant.mail}}</td>
-        <td>{{participant.tel}}</td>
-        <td>{{participant.profil.libelle}}</td>
-        <td>{{participant.pays.libelle}}</td>
-        <td>{{participant.organisme.libelle}}</td>
-        <td>
-          <button (click)="deleteParticipant(participant.id)" class="btn btn-danger">Delete</button>
-          <button (click)="participantDetails(participant.id)"  class="btn btn-info" style="margin-left: 10px">Details</button>
-          <button  (click)="updateParticipant(participant.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+
+<div class="container-fluid" >
+  <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addParticipant()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Participant" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1130px">
+
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef id="text1" class="font-weight-bold" style="text-align:center"> Id </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.id}} </td>
+    </ng-container>
+    <!-- nom Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef  id="text2" class="font-weight-bold" style="text-align:center"> <mat-icon>face</mat-icon>Nom </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.nom}} </td>
+    </ng-container>
+    <!-- prenom Column -->
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef  id="text4" class="font-weight-bold" style="text-align:center"><mat-icon>face</mat-icon>Prénom </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.prenom}} </td>
+    </ng-container>
+    <!-- type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef  id="text5" class="font-weight-bold" style="text-align:center"><mat-icon>label_important</mat-icon>type</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.type}} </td>
+    </ng-container>
+    <!-- mail Column -->
+    <ng-container matColumnDef="mail">
+      <th mat-header-cell *matHeaderCellDef  id="text6" class="font-weight-bold" style="text-align:center"><mat-icon> mail</mat-icon>Email </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.mail}} </td>
+    </ng-container>
+    <!-- tel Column -->
+    <ng-container matColumnDef="tel">
+      <th mat-header-cell *matHeaderCellDef  id="text7" class="font-weight-bold" style="text-align:center"><mat-icon> call</mat-icon>Tél</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.tel}} </td>
+    </ng-container>
+    <!-- profil Column -->
+    <ng-container matColumnDef="profil">
+      <th mat-header-cell *matHeaderCellDef  id="text8" class="font-weight-bold" style="text-align:center"><mat-icon>account_box</mat-icon>Profil </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.profil.libelle}} </td>
+    </ng-container>
+    <!-- pays Column -->
+    <ng-container matColumnDef="pays">
+      <th mat-header-cell *matHeaderCellDef  id="text9" class="font-weight-bold" style="text-align:center"><mat-icon> location_on</mat-icon>Pays</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.pays.libelle}} </td>
+    </ng-container>
+    <!-- organisme Column -->
+    <ng-container matColumnDef="organisme">
+      <th mat-header-cell *matHeaderCellDef  id="text10" class="font-weight-bold" style="text-align:center"><mat-icon>location_city</mat-icon>Organisme</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.organisme.libelle}} </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="star" stickyEnd >
+      <th mat-header-cell *matHeaderCellDef  id="text3" class="font-weight-bold" style="text-align:center"><mat-icon>build</mat-icon>&nbsp;Actions</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="participantDetails(element.id)">
+            <mat-icon id="icon-green">more_vert</mat-icon>
+            <span>Details</span>
+          </button>
+          <button mat-menu-item (click)="updateParticipant(element.id)">
+            <mat-icon id="icon-blue">update</mat-icon>
+            <span>Update</span>
+          </button>
+          <button mat-menu-item (click)="deleteParticipant(element.id)">
+            <mat-icon id="icon-red">delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </table>
+
 </div>
--->
-
-<button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addParticipant()">
-  <mat-icon>add</mat-icon>
-</button>
-<mat-form-field>
-  <mat-label>Search</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Participant" #input>
-</mat-form-field>
-
-<table mat-table [dataSource]="dataSource"  id="datatable"class="mat-elevation-z8" width="1050px">
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef> Nom </th>
-    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-  </ng-container>
-  <ng-container matColumnDef="prenom">
-    <th mat-header-cell *matHeaderCellDef> Prenom </th>
-    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
-  </ng-container>
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-  </ng-container>
-  <ng-container matColumnDef="mail">
-    <th mat-header-cell *matHeaderCellDef> Mail </th>
-    <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="tel">
-    <th mat-header-cell *matHeaderCellDef> Telephone </th>
-    <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="profil">
-    <th mat-header-cell *matHeaderCellDef> Profil </th>
-    <td mat-cell *matCellDef="let element"> {{element.profil.libelle}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="pays">
-    <th mat-header-cell *matHeaderCellDef> Pays </th>
-    <td mat-cell *matCellDef="let element"> {{element.pays.libelle}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="organisme">
-    <th mat-header-cell *matHeaderCellDef> Organisme </th>
-    <td mat-cell *matCellDef="let element"> {{element.organisme.libelle}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="star" stickyEnd>
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let participant">
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button  mat-menu-item (click)="participantDetails(participant.id)">
-          <mat-icon id="icon-green">more_vert</mat-icon>
-          <span>Details</span>
-        </button>
-        <button mat-menu-item (click)="updateParticipant(participant.id)">
-          <mat-icon id="icon-blue">update</mat-icon>
-          <span>Update</span>
-        </button>
-        <button mat-menu-item (click)="deleteParticipant(participant.id)">
-          <mat-icon id="icon-red">delete</mat-icon>
-          <span>Delete</span>
-        </button>
-
-      </mat-menu>
-    </td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  <!-- Row shown when there is no matching data. -->
-  <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-  </tr>
-
-</table>
 

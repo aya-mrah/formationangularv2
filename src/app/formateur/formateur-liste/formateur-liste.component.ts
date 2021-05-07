@@ -68,7 +68,7 @@ export class FormateurListeComponent implements OnInit {
            this.router.navigate(['formateur', id]);
          }
 
-         updateOrganisme(id: number){
+         updateFormateur(id: number){
              this.router.navigate(['updateformateur', id]);
            }
 

@@ -1,60 +1,140 @@
-<h3>Update Participant</h3>
-<div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="id">Id</label>
-      <input type="text" class="form-control" id="id" required [(ngModel)]="participant.id" name="id">
-    </div>
-    <div class="form-group">
-      <label for="nom">Nom</label>
-      <input type="text" class="form-control" id="nom" required [(ngModel)]="participant.nom" name="nom">
-    </div>
-    <div class="form-group">
-      <label for="prenom">Prénom</label>
-      <input type="text" class="form-control" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" required [(ngModel)]="participant.mail" name="email">
-    </div>
-    <div class="form-group">
-      <label for="tel">Tel</label>
-      <input type="text" class="form-control" id="tel" required [(ngModel)]="participant.tel" name="tel">
-    </div>
-    <div class="form-group">
-      <label>Type</label>
-      <select name="select" [(ngModel)]="participant.type"  class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un type</option>
-        <option value="Nationale">  Nationale </option>
-        <option value="Internationale">  Internationale </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Profil</label>
-      <select name="select" [(ngModel)]="participant.profil"  class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un profil</option>
-        <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
-      </select>
-    </div>
 
-    <div class="form-group">
-      <label>Pays</label>
-      <select name="select" [(ngModel)]="participant.pays" class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un pays</option>
-        <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
-      </select>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="form-group">
-      <label>Organisme</label>
-      <select name="select" [(ngModel)]="participant.organisme"   class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un organisme</option>
-        <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
-      </select>
-    </div>
+<head>
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Colorlib Templates">
+  <meta name="author" content="Colorlib">
+  <meta name="keywords" content="Colorlib Templates">
+
+  <!-- Title Page-->
+  <title>Au Register Forms by Colorlib</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Icons font CSS-->
+  <link href="/src/app/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+  <link href="/src/app/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <!-- Font special for pages-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Vendor CSS-->
+  <link href="/src/app/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <link href="/src/app/assets/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <!--  <link href="css/main.css" rel="stylesheet" media="all">-->
+</head>
+
+<body>
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+  <div class="wrapper wrapper--w960">
+    <div class="card card-2">
+      <div class="card-heading"></div>
+      <div class="card-body" >
+        <h2 class="title">UPDATE Participant</h2>
+        <form  (ngSubmit)="onSubmit()">
 
 
+          <div class="input-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="input--style-2" id="nom" required [(ngModel)]="participant.nom" name="nom">
+          </div>
+          <div class="input-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="input--style-2" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" class="input--style-2" id="email" required [(ngModel)]="participant.mail" name="email">
+          </div>
+          <div class="input-group">
+            <label for="tel">Tél</label>
+            <input type="text" class="input--style-2" id="tel" required [(ngModel)]="participant.tel" name="tel">
+          </div>
+          <div class="row-space">
+            <div class="col-2">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Type</label>
+                  <select name="select" [(ngModel)]="participant.type"  class="browser-default custom-select">
+                    <option [ngValue]="undefined">Type</option>
+                    <option value="Nationale">  Nationale </option>
+                    <option value="Internationale">  Internationale </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-space">
+            <div class="col-2">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Profil</label>
+                  <select name="select" [(ngModel)]="participant.profil"  class="browser-default custom-select">
+                    <option [ngValue]="undefined">Profil</option>
+                    <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-space">
+            <div class="col-2">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Pays</label>
+                  <select name="select" [(ngModel)]="participant.pays"  class="browser-default custom-select">
+                    <option [ngValue]="undefined">Pays</option>
+                    <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-space">
+            <div class="col-2">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Organisme</label>
+                  <select name="select" [(ngModel)]="participant.organisme"  class="browser-default custom-select">
+                    <option [ngValue]="undefined">Organisme</option>
+                    <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+
+          <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit">
+              <span class="glyphicon glyphicon-ok-circle"></span> Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Jquery JS-->
+<script src="/src/app/assets/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="/src/app/assets/vendor/select2/select2.min.js"></script>
+<script src="/src/app/assets/vendor/datepicker/moment.min.js"></script>
+<script src="/src/app/assets/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="/src/app/assets/js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

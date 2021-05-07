@@ -9,6 +9,9 @@ import {FormationService} from "src/app/service/formation.service";
 import {Formation} from "src/app/model/formation";
 import { IFormateur } from 'src/app/formateur/formateur-liste/formateur-liste.component';
 import { IOrganisme } from 'src/app/organisme/organisme-liste/organisme-liste.component';
+import { ParticipantService } from 'src/app/service/participant.service';
+import { Participant } from 'src/app/model/Participant';
+import {MatDialog} from '@angular/material/dialog';
 
 
 export interface ISession {
@@ -17,7 +20,7 @@ export interface ISession {
     date_fin: Date;
     nbparticipant: number;
     lieu: string;
-
+    participants:Participant[];
     formation: Formation;
     organisme: IOrganisme;
     formateur: IFormateur;
@@ -30,23 +33,33 @@ export interface ISession {
 })
 export class SessionListeComponent implements OnInit {
 
-
+  par : Participant[]
   sessions : ISession[];
-  displayedColumns:string[] = ['id', 'date_deb','date_fin', 'nbparticipant','lieu', 'formation','organisme', 'formateur','star'];
+  displayedColumns:string[] = ['id', 'date_deb','date_fin', 'nbparticipant','lieu', 'formation','organisme', 'formateur','participants','star'];
   dataSource :MatTableDataSource<ISession>
   constructor(private sessionService: SessionService,
-              private router: Router) { }
+              private router: Router) { 
+              }
 
 
   ngOnInit(): void {
         this.dataSource = new MatTableDataSource<ISession>(this.sessions)
         this.reloadData();
+
+
   }
 
   reloadData() {
        let resp = this.sessionService.getSessionsList();
-       resp.subscribe(report =>this.dataSource.data = report as ISession[])
-  }
+       resp.subscribe(report =>{
+         this.dataSource.data = report as ISession[]
+         this.sessions = report as ISession[]
+         //console.log(this.sessions)
+        
+        })
+       // console.log(this.sessions[0].participants)
+      }
+
 
    applyFilter(event: Event) {
           const filterValue = (event.target as HTMLInputElement).value;

@@ -1,3 +1,4 @@
+
 #butadd{
     margin-right: 15px;
     background-color:#87CEFA;
@@ -18,16 +19,28 @@ color: limegreen;
 .icon-large {
   font-size: 25px;
 }
-#icon-green {
-  color: cornflowerblue;
+#text1{
+color: CadetBlue;
 }
+#text2{
+color: CadetBlue;
+}
+#text3{
+color: CadetBlue;
+}
+#text4{
+color: CadetBlue;
+}
+#text5{
+ color: CadetBlue;
+ }
+ #text6{
+ color: CadetBlue;
+ }
+ #text7{
+ color: CadetBlue;
+ }
+ #text8{
+ color: CadetBlue;
+ }
 
-#icon-red {
-  color: crimson;
-}
-#icon-blue{
-color: limegreen;
-}
-.icon-large {
-  font-size: 25px;
-}

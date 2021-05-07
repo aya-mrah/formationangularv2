@@ -1,93 +1,93 @@
-<button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addFormation()">
-  <mat-icon>add</mat-icon>
-</button>
-<mat-form-field>
-  <mat-label>Search</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Formation" #input>
-</mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1050px">
+<div class="container-fluid" >
+  <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addFormation()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Formation" #input>
+  </mat-form-field>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <!-- titre Column -->
-  <ng-container matColumnDef="titre">
-    <th mat-header-cell *matHeaderCellDef> titre </th>
-    <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
-  </ng-container>
-
-  <!-- type_formation Column -->
-  <ng-container matColumnDef="type_formation">
-    <th mat-header-cell *matHeaderCellDef> type </th>
-    <td mat-cell *matCellDef="let element"> {{element.type_formation}} </td>
-  </ng-container>
-
-  <!-- nbSession Column -->
-  <ng-container matColumnDef="nbSession">
-    <th mat-header-cell *matHeaderCellDef>  Nb Session </th>
-    <td mat-cell *matCellDef="let element"> {{element.nbSession}} </td>
-  </ng-container>
-
-  <!-- annee Column -->
-  <ng-container matColumnDef="annee">
-    <th mat-header-cell *matHeaderCellDef> Annee </th>
-    <td mat-cell *matCellDef="let element"> {{element.annee}} </td>
-  </ng-container>
-
-  <!-- duree Column -->
-  <ng-container matColumnDef="duree">
-    <th mat-header-cell *matHeaderCellDef> Duree </th>
-    <td mat-cell *matCellDef="let element"> {{element.duree}} </td>
-  </ng-container>
-
-  <!-- budget Column -->
-  <ng-container matColumnDef="budget">
-    <th mat-header-cell *matHeaderCellDef> Budget </th>
-    <td mat-cell *matCellDef="let element"> {{element.budget}} </td>
-  </ng-container>
-
-  <!-- domaine Column -->
-  <ng-container matColumnDef="domaine">
-    <th mat-header-cell *matHeaderCellDef> Domaine </th>
-    <td mat-cell *matCellDef="let element"> {{element.domaine.libelle}}</td>
-  </ng-container>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1130px">
 
 
-  <ng-container matColumnDef="star" stickyEnd>
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let formation">
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button  mat-menu-item (click)="formationDetails(formation.id)">
-          <mat-icon id="icon-green">more_vert</mat-icon>
-          <span>Details</span>
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef id="text1" class="font-weight-bold" style="text-align:center"> Id </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.id}} </td>
+    </ng-container>
+    <!-- titre Column -->
+    <ng-container matColumnDef="titre">
+      <th mat-header-cell *matHeaderCellDef  id="text2" class="font-weight-bold" style="text-align:center"><mat-icon>description</mat-icon> Titre </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.titre}} </td>
+    </ng-container>
+    <!-- type_formation Column -->
+    <ng-container matColumnDef="type_formation">
+      <th mat-header-cell *matHeaderCellDef  id="text4" class="font-weight-bold" style="text-align:center"><mat-icon>label_important</mat-icon>Type </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.type_formation}} </td>
+    </ng-container>
+    <!-- nbSession Column -->
+    <ng-container matColumnDef="nbSession">
+      <th mat-header-cell *matHeaderCellDef  id="text5" class="font-weight-bold" style="text-align:center">	<mat-icon> add_comment</mat-icon>nb Session </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.nbSession}} </td>
+    </ng-container>
+    <!-- annee Column -->
+    <ng-container matColumnDef="annee">
+      <th mat-header-cell *matHeaderCellDef  id="text6" class="font-weight-bold" style="text-align:center"><mat-icon> today</mat-icon> Année </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.annee}} </td>
+    </ng-container>
+    <!-- duree Column -->
+    <ng-container matColumnDef="duree">
+      <th mat-header-cell *matHeaderCellDef  id="text7" class="font-weight-bold" style="text-align:center"><mat-icon>schedule</mat-icon> Durée</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.duree}} </td>
+    </ng-container>
+    <!-- budget Column -->
+    <ng-container matColumnDef="budget">
+      <th mat-header-cell *matHeaderCellDef  id="text8" class="font-weight-bold" style="text-align:center"><mat-icon> monetization_on</mat-icon> Budget </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.budget}} </td>
+    </ng-container>
+    <!-- domaine Column -->
+    <ng-container matColumnDef="domaine">
+      <th mat-header-cell *matHeaderCellDef  id="text9" class="font-weight-bold" style="text-align:center">	<mat-icon>domain</mat-icon>Domaine </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.domaine.libelle}} </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="star" stickyEnd >
+      <th mat-header-cell *matHeaderCellDef  id="text3" class="font-weight-bold" style="text-align:center"><mat-icon>build</mat-icon>&nbsp;Actions</th>
+      <td mat-cell *matCellDef="let element" style="text-align:center">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
-        <button mat-menu-item (click)="updateFormation(formation.id)">
-          <mat-icon id="icon-blue">update</mat-icon>
-          <span>Update</span>
-        </button>
-        <button mat-menu-item (click)="deleteFormation(formation.id)">
-          <mat-icon id="icon-red">delete</mat-icon>
-          <span>Delete</span>
-        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="formationDetails(element.id)">
+            <mat-icon id="icon-green">more_vert</mat-icon>
+            <span>Details</span>
+          </button>
+          <button mat-menu-item (click)="updateFormation(element.id)">
+            <mat-icon id="icon-blue">update</mat-icon>
+            <span>Update</span>
+          </button>
+          <button mat-menu-item (click)="deleteFormation(element.id)">
+            <mat-icon id="icon-red">delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
 
-      </mat-menu>
-    </td>
-  </ng-container>
 
 
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
 
-  <!-- Row shown when there is no matching data. -->
-  <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-  </tr>
-</table>
+  </table>
+
+</div>
+

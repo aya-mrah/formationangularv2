@@ -1,53 +1,126 @@
-<h3>Create Formation</h3>
-<div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="id">Id</label>
-      <input type="text" class="form-control" id="id" required [(ngModel)]="formation.id" name="id">
-    </div>
-    <div class="form-group">
-      <label for="titre">Titre</label>
-      <input type="text" class="form-control" id="titre" required [(ngModel)]="formation.titre" name="titre">
-    </div>
-    <div class="form-group">
-      <label for="">Type</label>
-      <select name="select" [(ngModel)]="formation.type_formation"  class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un type</option>
-        <option value="Nationale">  Nationale </option>
-        <option value="Internationale">  Internationale </option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="annee">Année</label>
-      <input type="number" class="form-control" id="annee" required [(ngModel)]="formation.annee" name="annee">
-    </div>
-    <div class="form-group">
-      <label for="nbSession">Nombre sessions</label>
-      <input type="number" class="form-control" id="nbSession" required [(ngModel)]="formation.nbSession" name="nbSession">
-    </div>
-    <div class="form-group">
-      <label for="duree">Durée (/Jour)</label>
-      <input type="number" class="form-control" id="duree" required [(ngModel)]="formation.duree" name="duree">
-    </div>
-    <div class="form-group">
-      <label for="budget">Budget</label>
-      <input type="number" class="form-control" id="budget" required [(ngModel)]="formation.budget" name="budget">
-    </div>
-    <div class="form-group">
-      <label>Domaine</label>
-      <select name="select" [(ngModel)]="formation.domaine"  (ngModelChange)="setNewDomaine($event)" class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner une Domaine</option>
-        <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
-      </select>
-    </div>
 
 
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Colorlib Templates">
+  <meta name="author" content="Colorlib">
+  <meta name="keywords" content="Colorlib Templates">
+
+  <!-- Title Page-->
+  <title>Au Register Forms by Colorlib</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Icons font CSS-->
+  <link href="/src/app/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+  <link href="/src/app/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <!-- Font special for pages-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Vendor CSS-->
+  <link href="/src/app/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <link href="/src/app/assets/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <!--  <link href="css/main.css" rel="stylesheet" media="all">-->
+</head>
+
+<body>
+<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo" style="  padding-top=78px">
+  <div class="wrapper wrapper--w960">
+    <div class="card card-2">
+      <div class="card-heading"></div>
+      <div class="card-body" [hidden]="submitted">
+        <h2 class="title">Ajouter Formation</h2>
+        <form  (ngSubmit)="onSubmit()">
+          <div class="input-group">
+            <label for="titre">Titre</label>
+            <input type="text" class="input--style-2" id="titre" required [(ngModel)]="formation.titre" name="titre">
+          </div>
+          <div class="row-space">
+          <div class="col-2">
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+            <label for="">Type</label>
+            <select name="select" [(ngModel)]="formation.type_formation"  class="form-select form-select-lg mb-3">
+              <option [ngValue]="undefined">Type</option>
+              <option value="Nationale">  Nationale </option>
+              <option value="Internationale">  Internationale </option>
+            </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+          </div>
+          </div>
+              <div class="input-group">
+                <label for="annee">Année</label>
+                <input type="number"  class="input--style-2" id="annee" required [(ngModel)]="formation.annee" name="annee">
+              </div>
+              <div class="input-group">
+                <label for="nbSession">nb Session</label>
+                <input type="number"  class="input--style-2" id="nbSession" required [(ngModel)]="formation.nbSession" name="nbSession">
+              </div>
+              <div class="input-group">
+                <label for="duree">Durée (/Jour)</label>
+                <input type="number"  class="input--style-2" id="duree" required [(ngModel)]="formation.duree" name="duree">
+              </div>
+              <div class="input-group">
+                <label for="budget">Budget</label>
+                <input type="number"  class="input--style-2" id="budget" required [(ngModel)]="formation.budget" name="budget">
+              </div>
+          <div class="row-space">
+          <div class="col-2">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Domaine</label>
+                  <select name="select" [(ngModel)]="formation.domaine" (ngModelChange)="setNewDomaine($event)" class="form-select form-select-lg mb-3 ">
+                    <option [ngValue]="undefined">Domaine</option>
+                    <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                  </div>
+                  </div>
+          </div>
+          </div>
+          <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit">
+              <span class="glyphicon glyphicon-ok-circle"></span> Submit
+            </button>
+          </div>
+              <div [hidden]="!submitted">
+                <h4>You submitted successfully!</h4>
+                <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+              </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
-</div>
+<!-- Jquery JS-->
+<script src="/src/app/assets/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="/src/app/assets/vendor/select2/select2.min.js"></script>
+<script src="/src/app/assets/vendor/datepicker/moment.min.js"></script>
+<script src="/src/app/assets/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="/src/app/assets/js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
