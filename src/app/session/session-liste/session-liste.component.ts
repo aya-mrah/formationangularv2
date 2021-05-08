@@ -12,6 +12,7 @@ import { IOrganisme } from 'src/app/organisme/organisme-liste/organisme-liste.co
 import { ParticipantService } from 'src/app/service/participant.service';
 import { Participant } from 'src/app/model/Participant';
 import {MatDialog} from '@angular/material/dialog';
+import { DialogParticipantSessionComponent } from 'src/app/dialog-participant-session/dialog-participant-session.component';
 
 
 export interface ISession {
@@ -26,20 +27,37 @@ export interface ISession {
     formateur: IFormateur;
 }
 
+
+
 @Component({
   selector: 'app-session-liste',
   templateUrl: './session-liste.component.html',
   styleUrls: ['./session-liste.component.css']
 })
 export class SessionListeComponent implements OnInit {
+ 
+
+  participants !:Participant[];
 
   par : Participant[]
   sessions : ISession[];
   displayedColumns:string[] = ['id', 'date_deb','date_fin', 'nbparticipant','lieu', 'formation','organisme', 'formateur','participants','star'];
   dataSource :MatTableDataSource<ISession>
   constructor(private sessionService: SessionService,
-              private router: Router) { 
+              private router: Router ,
+              public dialog: MatDialog
+              ) { 
               }
+              openDialog(element:Participant[]): void {
+                const dialogRef = this.dialog.open(DialogParticipantSessionComponent, {
+                  width: '500px',
+                  data: {participants: element}
+                });
+            
+                
+              }
+              
+
 
 
   ngOnInit(): void {
@@ -48,6 +66,7 @@ export class SessionListeComponent implements OnInit {
 
 
   }
+  
 
   reloadData() {
        let resp = this.sessionService.getSessionsList();
@@ -89,3 +108,6 @@ export class SessionListeComponent implements OnInit {
 
 
 }
+
+
+
