@@ -19,6 +19,7 @@ export class ParticipantUpdateComponent implements OnInit {
   payss: any;
   profils: any;
   organismes: any;
+  types: string[] = ['Nationale', 'Internationale'];
   constructor(private route: ActivatedRoute,private router: Router,
               private participantService: ParticipantService,
               private paysService: PaysService,
