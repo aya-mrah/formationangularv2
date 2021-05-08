@@ -14,7 +14,7 @@ export class FormateurUpdateComponent implements OnInit {
 
        id: number;
        formateur: Formateur;
-
+       types: string[] = ['Interne', 'Externe'];
        organismes: any;
 
        constructor(private route: ActivatedRoute,private router: Router,

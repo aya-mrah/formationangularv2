@@ -55,14 +55,13 @@
             <input type="text" class="input--style-2" id="tel" required [(ngModel)]="participant.tel" name="tel">
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Type</label>
-                  <select name="select" [(ngModel)]="participant.type"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Type</option>
-                    <option value="Nationale">  Nationale </option>
-                    <option value="Internationale">  Internationale </option>
+                  <select name="type2" [(ngModel)]="participant.type"  class=" form-select browser-default custom-select">
+                    <option hidden >  {{participant.type}} </option>
+                    <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="participant.type==type ? true : null">  {{type}} </option>
                   </select>
                   <div class="select-dropdown"></div>
                 </div>
@@ -70,47 +69,57 @@
             </div>
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Profil</label>
-                  <select name="select" [(ngModel)]="participant.profil"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Profil</option>
-                    <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
+                  <select name="profil" [(ngModel)]="participant.profil"  class=" form-select browser-default custom-select">
+
+                    <option hidden [ngValue]="participant.profil"  [attr.selected]="true">  {{participant.profil.libelle}} </option>
+                    <option *ngFor="let profil of profils"  [ngValue]="profil"  [attr.selected]="profil.id==participant.profil.id ? true : null">  {{profil.libelle}} </option>
                   </select>
                   <div class="select-dropdown"></div>
                 </div>
               </div>
             </div>
           </div>
+
+
           <div class="row-space">
-            <div class="col-2">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Pays</label>
-                  <select name="select" [(ngModel)]="participant.pays"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Pays</option>
-                    <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
-                  </select>
-                  <div class="select-dropdown"></div>
-                </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="rs-select2 js-select-simple select--no-search">
+                <label for="">Pays</label>
+                <select name="pays" [(ngModel)]="participant.pays"  class=" form-select browser-default custom-select">
+
+                  <option hidden [ngValue]="participant.pays"  [attr.selected]="true">  {{participant.pays.libelle}} </option>
+
+                  <option *ngFor="let pays of payss"  [ngValue]="pays"  [attr.selected]="participant.pays.id==pays.id ? true : null">  {{pays.libelle}} </option>
+                </select>
+
+                <div class="select-dropdown"></div>
               </div>
             </div>
           </div>
+      </div>
+
           <div class="row-space">
-            <div class="col-2">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Organisme</label>
-                  <select name="select" [(ngModel)]="participant.organisme"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Organisme</option>
-                    <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
-                  </select>
-                  <div class="select-dropdown"></div>
-                </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="rs-select2 js-select-simple select--no-search">
+                <label for="">Organisme</label>
+                <select name="organisme" [(ngModel)]="participant.organisme"  class=" form-select browser-default custom-select">
+
+                  <option hidden [ngValue]="participant.organisme"  [attr.selected]="true">  {{participant.organisme.libelle}} </option>
+
+                  <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="participant.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
+                </select>
+
+                <div class="select-dropdown"></div>
               </div>
             </div>
           </div>
+      </div>
 
 
           <div class="p-t-30">
