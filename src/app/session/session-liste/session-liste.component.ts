@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {Session} from "src/app/model/session";
@@ -13,6 +13,9 @@ import { ParticipantService } from 'src/app/service/participant.service';
 import { Participant } from 'src/app/model/Participant';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogParticipantSessionComponent } from 'src/app/dialog-participant-session/dialog-participant-session.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 
 export interface ISession {
@@ -35,6 +38,7 @@ export interface ISession {
   styleUrls: ['./session-liste.component.css']
 })
 export class SessionListeComponent implements OnInit {
+
  
 
   participants !:Participant[];
@@ -42,7 +46,20 @@ export class SessionListeComponent implements OnInit {
   par : Participant[]
   sessions : ISession[];
   displayedColumns:string[] = ['id', 'date_deb','date_fin', 'nbparticipant','lieu', 'formation','organisme', 'formateur','participants','star'];
-  dataSource :MatTableDataSource<ISession>
+  dataSource :MatTableDataSource<ISession>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
+
+
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private sessionService: SessionService,
               private router: Router ,
               public dialog: MatDialog
