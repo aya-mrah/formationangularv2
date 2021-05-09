@@ -40,18 +40,17 @@
             <input type="text" class="input--style-2" id="titre" required [(ngModel)]="formation.titre" name="titre">
           </div>
           <div class="row-space">
-            <div class="col-2">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Type</label>
-                  <select name="select" [(ngModel)]="formation.type_formation"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Type</option>
-                    <option value="Nationale">  Nationale </option>
-                    <option value="Internationale">  Internationale </option>
-                  </select>
-                  <div class="select-dropdown"></div>
-                </div>
-              </div>
+            <div class="form-group">
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+            <label for="">Type</label>
+              <select name="select2" [(ngModel)]="formation.type_formation"  class=" form-select browser-default custom-select">
+                <option hidden >  {{formation.type_formation}} </option>
+                <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formation.type_formation==type ? true : null">  {{type}} </option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
             </div>
           </div>
           <div class="input-group">
@@ -75,9 +74,11 @@
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Domaine</label>
-                  <select name="select" [(ngModel)]="formation.domaine"  class="browser-default custom-select">
-                    <option [ngValue]="undefined">Domaine</option>
-                    <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
+                  <select name="select" [(ngModel)]="formation.domaine"  class=" form-select browser-default custom-select">
+
+                    <option hidden [ngValue]="formation.domaine"  [attr.selected]="true">  {{formation.domaine.libelle}} </option>
+
+                    <option *ngFor="let domaine of domaines"  [ngValue]="domaine"  [attr.selected]="formation.domaine.id==domaine.id ? true : null">  {{domaine.libelle}} </option>
                   </select>
                   <div class="select-dropdown"></div>
                 </div>

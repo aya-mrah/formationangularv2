@@ -109,8 +109,8 @@ import { SessionListeComponent } from './session/session-liste/session-liste.com
 import { SessionAddComponent } from './session/session-add/session-add.component';
 import { SessionUpdateComponent } from './session/session-update/session-update.component';
 import { SessionDetailsComponent } from './session/session-details/session-details.component';
-
-
+import { DialogParticipantSessionComponent } from './dialog-participant-session/dialog-participant-session.component';
+//--------
 @NgModule({
   declarations: [
     AppComponent,
@@ -156,7 +156,8 @@ import { SessionDetailsComponent } from './session/session-details/session-detai
     SessionListeComponent,
     SessionAddComponent,
     SessionUpdateComponent,
-    SessionDetailsComponent
+    SessionDetailsComponent,
+    DialogParticipantSessionComponent
   ],
   imports: [
     BrowserModule,

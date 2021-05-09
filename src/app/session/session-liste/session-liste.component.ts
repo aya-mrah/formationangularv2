@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {Session} from "src/app/model/session";
@@ -12,6 +12,10 @@ import { IOrganisme } from 'src/app/organisme/organisme-liste/organisme-liste.co
 import { ParticipantService } from 'src/app/service/participant.service';
 import { Participant } from 'src/app/model/Participant';
 import {MatDialog} from '@angular/material/dialog';
+import { DialogParticipantSessionComponent } from 'src/app/dialog-participant-session/dialog-participant-session.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 
 export interface ISession {
@@ -26,6 +30,8 @@ export interface ISession {
     formateur: IFormateur;
 }
 
+
+
 @Component({
   selector: 'app-session-liste',
   templateUrl: './session-liste.component.html',
@@ -33,13 +39,42 @@ export interface ISession {
 })
 export class SessionListeComponent implements OnInit {
 
+ 
+
+  participants !:Participant[];
+
   par : Participant[]
   sessions : ISession[];
   displayedColumns:string[] = ['id', 'date_deb','date_fin', 'nbparticipant','lieu', 'formation','organisme', 'formateur','participants','star'];
-  dataSource :MatTableDataSource<ISession>
+  dataSource :MatTableDataSource<ISession>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
+
+
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private sessionService: SessionService,
-              private router: Router) { 
+              private router: Router ,
+              public dialog: MatDialog
+              ) { 
               }
+              openDialog(element:Participant[]): void {
+                const dialogRef = this.dialog.open(DialogParticipantSessionComponent, {
+                  width: '500px',
+                  data: {participants: element}
+                });
+            
+                
+              }
+              
+
 
 
   ngOnInit(): void {
@@ -48,6 +83,7 @@ export class SessionListeComponent implements OnInit {
 
 
   }
+  
 
   reloadData() {
        let resp = this.sessionService.getSessionsList();
@@ -89,3 +125,6 @@ export class SessionListeComponent implements OnInit {
 
 
 }
+
+
+

@@ -1,0 +1,8 @@
+<mat-list>
+    <div mat-subheader>Participant</div>
+    <mat-list-item *ngFor="let participant of data.participants">
+      <mat-icon mat-list-icon>face</mat-icon>
+      <div mat-line>{{participant.nom}}</div>
+      <div mat-line> {{participant.mail}} </div>
+    </mat-list-item>
+  </mat-list>

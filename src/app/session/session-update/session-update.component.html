@@ -23,26 +23,70 @@
     </div>
     <div class="form-group">
       <label>Formation</label>
-      <select name="select" [(ngModel)]="session.formation"  class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner une formation</option>
-        <option *ngFor="let formation of formations"  [ngValue]="formation" >  {{formation.titre}} </option>
+      <select name="formation" [(ngModel)]="session.formation"  class=" form-select browser-default custom-select">
+
+        <option hidden [ngValue]="session.formation"  [attr.selected]="true">  {{session.formation.titre}} </option>
+
+        <option *ngFor="let formation of formations"  [ngValue]="formation"  [attr.selected]="session.formation.id==formation.id ? true : null">  {{formation.titre}} </option>
       </select>
     </div>
     <div class="form-group">
       <label>Organisme</label>
-      <select name="select" [(ngModel)]="session.organisme" class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un organisme</option>
-        <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
+      <select name="organisme" [(ngModel)]="session.organisme"  class=" form-select browser-default custom-select">
+
+        <option hidden [ngValue]="session.organisme"  [attr.selected]="true">  {{session.organisme.libelle}} </option>
+
+        <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="session.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
       </select>
     </div>
 
     <div class="form-group">
       <label>Formateur</label>
-      <select name="select" [(ngModel)]="session.formateur"  class="browser-default custom-select">
-        <option [ngValue]="undefined">Sélectionner un formateur</option>
-        <option *ngFor="let formateur of formateurs"  [ngValue]="formateur" >  {{formateur.nom}} {{formateur.prenom}} </option>
+      <select name="formateur" [(ngModel)]="session.formateur"  class=" form-select browser-default custom-select">
+
+        <option hidden [ngValue]="session.formateur"  [attr.selected]="true">  {{session.formateur.prenom}} {{session.formateur.nom}}</option>
+
+        <option *ngFor="let formateur of formateurs"  [ngValue]="formateur"  [attr.selected]="session.formateur.id==formateur.id ? true : null"> {{formateur.prenom}} {{formateur.nom}} </option>
       </select>
     </div>
+
+
+    <mat-form-field class="example-chip-list" >
+      <mat-label>Saisie participant</mat-label>
+      <!--List Autocomplete de participant-->
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+        <mat-option *ngFor="let participant of filteredParticipants | async" [value]="participant">
+          {{participant.mail}}
+        </mat-option>
+      </mat-autocomplete>
+      <!-- Les chips des participant selected-->
+      <mat-chip-list #chipList aria-label="Participant selection"  >
+        <mat-chip
+          *ngFor="let participant of participants"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(participant)">
+          {{participant.mail}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <!--Input de saisie de participant -->
+        <input
+        placeholder="New Participants..."
+          #participantInput
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    
+    </mat-form-field>
+
+
+
+
+
+
+
 
     <button type="submit" class="btn btn-success">Submit</button>
   </form>

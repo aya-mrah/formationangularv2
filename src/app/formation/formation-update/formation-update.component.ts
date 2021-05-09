@@ -13,6 +13,8 @@ export class FormationUpdateComponent implements OnInit {
    id: number;
     formation: Formation;
     domaines: any;
+  types: string[] = ['Nationale', 'Internationale'];
+
     constructor(private route: ActivatedRoute,private router: Router,
                 private domaineService: DomaineService,
                 private formationService: FormationService) { }
