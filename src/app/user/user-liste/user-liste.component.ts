@@ -2,10 +2,14 @@
 import { Observable } from "rxjs";
 import { UserService } from "src/app/service/user.service";
 import { User } from "src/app/model/user";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
+
 
 export interface IUser {
      id: number;
@@ -30,6 +34,15 @@ export class UserListeComponent implements OnInit {
   displayedColumns:string[] = ['id', 'email','password','username','star'];
   dataSource :MatTableDataSource<IUser>
 
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
 
 
   constructor(private userService: UserService,private token: TokenStorageService,

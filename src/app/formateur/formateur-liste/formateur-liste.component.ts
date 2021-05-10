@@ -2,11 +2,14 @@
 import { Observable } from "rxjs";
 import { FormateurService } from "src/app/service/formateur.service";
 import { Formateur } from "src/app/model/formateur";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { Participant } from "src/app/model/Participant";
 import {Organisme} from "src/app/model/organisme";
 import {Router} from "@angular/router";
 import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 export interface IFormateur {
     id: number;
@@ -33,6 +36,15 @@ export class FormateurListeComponent implements OnInit {
  formateurs : IFormateur[];
   displayedColumns:string[] = ['id', 'nom','prenom', 'email','tel', 'type','organisme','star'];
   dataSource :MatTableDataSource<IFormateur>
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
+    @ViewChild(MatSort) sort: MatSort;
 
  constructor(private formateurService: FormateurService,
          private router: Router) {}

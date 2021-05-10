@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 //import { PaysDetailsComponent } from 'src/app/pays/pays-details/pays-details.component';
 import { Observable } from "rxjs";
 import { PaysService } from "src/app/service/pays.service";
 import { Pays} from "src/app/model/pays";
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
+
 
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -25,6 +29,16 @@ export class PaysListeComponent implements OnInit {
   payss: IPays[];
   displayedColumns:string[] = ['id', 'libelle','star'];
   dataSource :MatTableDataSource<IPays>
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
 
 
         constructor(private paysService: PaysService,

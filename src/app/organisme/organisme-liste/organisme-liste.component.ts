@@ -2,10 +2,12 @@
 import { Observable } from "rxjs";
 import { OrganismeService } from "src/app/service/organisme.service";
 import { Organisme } from "src/app/model/organisme";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 export interface IOrganisme {
   id: number;
@@ -26,6 +28,15 @@ export class OrganismeListeComponent implements OnInit {
   displayedColumns:string[] = ['id', 'libelle','star'];
   dataSource :MatTableDataSource<IOrganisme>
   //dataSource = new MatTableDataSource<Organisme[]>();
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
+    @ViewChild(MatSort) sort: MatSort;
 
     constructor(private organismeService: OrganismeService,
       private router: Router) {

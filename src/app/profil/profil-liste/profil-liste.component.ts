@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 //import { ProfilDetailsComponent } from 'src/app/profil-details/profil-details.component';
 import { Observable } from "rxjs";
 import { ProfilService } from "src/app/service/profil.service";
 import { Profil} from "src/app/model/profil";
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 export interface IProfil {
   id: number;
@@ -26,6 +29,16 @@ export class ProfilListeComponent implements OnInit {
   profils: IProfil[];
   displayedColumns:string[] = ['id', 'libelle','star'];
   dataSource :MatTableDataSource<IProfil>
+
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
+    @ViewChild(MatSort) sort: MatSort;
 
 
       constructor(private profilService: ProfilService,

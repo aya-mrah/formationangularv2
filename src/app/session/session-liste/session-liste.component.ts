@@ -39,7 +39,7 @@ export interface ISession {
 })
 export class SessionListeComponent implements OnInit {
 
- 
+
 
   participants !:Participant[];
 
@@ -55,25 +55,22 @@ export class SessionListeComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-
-
-
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private sessionService: SessionService,
               private router: Router ,
               public dialog: MatDialog
-              ) { 
+              ) {
               }
               openDialog(element:Participant[]): void {
                 const dialogRef = this.dialog.open(DialogParticipantSessionComponent, {
                   width: '500px',
                   data: {participants: element}
                 });
-            
-                
+
+
               }
-              
+
 
 
 
@@ -83,7 +80,7 @@ export class SessionListeComponent implements OnInit {
 
 
   }
-  
+
 
   reloadData() {
        let resp = this.sessionService.getSessionsList();
@@ -91,7 +88,7 @@ export class SessionListeComponent implements OnInit {
          this.dataSource.data = report as ISession[]
          this.sessions = report as ISession[]
          //console.log(this.sessions)
-        
+
         })
        // console.log(this.sessions[0].participants)
       }

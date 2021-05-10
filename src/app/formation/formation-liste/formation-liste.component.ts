@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
 import {Formation} from "src/app/model/Formation";
 import {Router} from "@angular/router";
 import {FormationService } from "src/app/service/formation.service";
 import {MatTableDataSource} from '@angular/material/table';
 import { IDomaine } from 'src/app/domaine/domaine-liste/domaine-liste.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 export interface IFormation {
    id: number;
@@ -35,6 +38,19 @@ export class FormationListeComponent implements OnInit {
   formations : IFormation[];
   displayedColumns:string[] = ['id', 'titre','type_formation', 'nbSession','annee', 'duree','budget', 'domaine','star'];
   dataSource :MatTableDataSource<IFormation>
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
+
+
+
   constructor(private formationService: FormationService,
               private router: Router) { }
 

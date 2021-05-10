@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from "rxjs";
 import { DomaineService } from "src/app/service/domaine.service";
 import { Domaine } from "src/app/model/domaine";
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 export interface IDomaine {
   id: number;
@@ -24,6 +27,17 @@ export class DomaineListeComponent implements OnInit {
   displayedColumns:string[] = ['id', 'libelle','star'];
   dataSource :MatTableDataSource<IDomaine>
 //domaines: Observable<Domaine[]>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
+
+
 
         constructor(private domaineService: DomaineService,
           private router: Router) {}

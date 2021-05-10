@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Participant } from "src/app/model/Participant";
 import { Profil } from 'src/app/model/profil';
 import { Pays } from 'src/app/model/pays';
@@ -7,6 +7,9 @@ import {Router} from "@angular/router";
 import {ParticipantService} from "src/app/service/participant.service";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { element } from 'protractor';
+import { MatSort } from '@angular/material/sort';
 
 
 export interface IParticipant {
@@ -33,6 +36,16 @@ export class ParticipantListeComponent implements OnInit {
   displayedColumns:string[] = ['id', 'nom','prenom','mail','tel','type','profil','pays','organisme','star'];
   dataSource :MatTableDataSource<IParticipant>
  // participants: Observable<Participant[]>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
+
 
     constructor(private participantService: ParticipantService,
                 private router: Router) { }
