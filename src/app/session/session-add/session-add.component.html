@@ -59,7 +59,7 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Formation</label>
                   <select name="select" [(ngModel)]="session.formation" (ngModelChange)="setNewFormation($event)"  class="form-select browser-default custom-select">
-                    <option [ngValue]="undefined">Sélectionner une formation<</option>
+                    <option [ngValue]="undefined">Sélectionner une formation</option>
                     <option *ngFor="let formation of formations"  [ngValue]="formation" >  {{formation.titre}} </option>
                   </select>
                   <div class="select-dropdown"></div>
@@ -87,7 +87,7 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Formateur</label>
                   <select name="select" [(ngModel)]="session.formateur" (ngModelChange)="setNewFormateur($event)"  class="form-select browser-default custom-select">
-                    <option [ngValue]="undefined">Sélectionner une formateur<</option>
+                    <option [ngValue]="undefined">Sélectionner une formateur</option>
                     <option *ngFor="let formateur of formateurs"  [ngValue]="formateur" >  {{formateur.nom}} {{formateur.prenom}}  </option>
                   </select>
                   <div class="select-dropdown"></div>
@@ -172,13 +172,6 @@
 
 </html>
 <!-- end document-->
-
-
-
-
-
-
-
 
 
 

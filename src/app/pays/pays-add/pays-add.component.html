@@ -89,7 +89,7 @@
         <form  (ngSubmit)="onSubmit()">
           <div class="input-group">
             <input class="input--style-2" type="text" placeholder="Pays" name="name" id="libelle" required [(ngModel)]="pays.libelle">
-
+            <input class="input--style-2" type="file" (change)="onFileChanged($event)">
           </div>
           <div class="p-t-30">
             <button class="btn btn--radius btn--green" type="submit">

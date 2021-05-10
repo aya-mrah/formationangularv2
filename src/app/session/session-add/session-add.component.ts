@@ -40,9 +40,8 @@ export class SessionAddComponent implements OnInit {
     {id:3,mail:"hamdi@gmail.com",nom:"hamdi",organisme:null,pays:null,prenom:"rahmani",profil:null,tel:12,type:""}
   ]
  
-  @ViewChild('participantInput')
-  participantInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete | undefined;
+  @ViewChild('participantInput')participantInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete ;
   //-------------
 
 session: Session = new Session();
@@ -66,10 +65,8 @@ session: Session = new Session();
                 
                 let resp = this.participantService.getParticipantsList()
        resp.subscribe(report =>this.allParticipants = report as Participant[])
-                
-                this.filteredParticipants = this.pariticpantCtrl.valueChanges.pipe(
-                  map((participant: Participant | null) => participant ? this._filter(participant) : this.allParticipants.slice()));
-               }
+       this.pariticpantCtrl.setValue(null);
+                   }
 
 
   save() {
@@ -121,6 +118,10 @@ session: Session = new Session();
     this.formationService.getFormationsList().subscribe(data => {
       this.formations = data;
     });
+
+    this.filteredParticipants = this.pariticpantCtrl.valueChanges.pipe(
+      map((participant: Participant ) => participant ? this._filter(participant) : this.allParticipants.slice()));
+
   }
 
   add(event: MatChipInputEvent): void {
