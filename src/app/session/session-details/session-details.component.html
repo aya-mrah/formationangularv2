@@ -1,14 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,13 +61,23 @@
               <div class="input--style-2"> <label><b> Formateur: &nbsp;</b></label> {{session.formateur.prenom}} {{session.formateur.nom}}</div>
             </div>
             <div class="input-group">
-              <div class="input--style-2"> <label><b> Participants: &nbsp;</b></label> {{session.participants}}</div>
-            </div>
+              <div class="input--style-2"> 
 
 
+                <mat-list>
+                  <div class="input--style-2">Participants :</div>
+                  <mat-list-item *ngFor="let participant of session.participants">
+                    <mat-icon mat-list-icon>face</mat-icon>
+                    <div mat-line>{{participant.nom}}</div>
+                    <div mat-line> {{participant.mail}} </div>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+  
 
-
-
+                
+              </div>
+              
             <div class="p-t-30">
               <button class="btn btn--radius btn--green" type="submit" (click)="list()">
                 <span class="glyphicon glyphicon-ok-circle"></span> Back to Participant List

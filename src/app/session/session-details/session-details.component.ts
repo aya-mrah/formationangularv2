@@ -9,7 +9,7 @@ import {Session} from "src/app/model/session";
   styleUrls: ['./session-details.component.css']
 })
 export class SessionDetailsComponent implements OnInit {
- id: number;
+  id: number;
   session: Session;
   constructor(private route: ActivatedRoute,private router: Router,
               private sessionService: SessionService) { }
