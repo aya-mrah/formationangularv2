@@ -50,11 +50,11 @@
             <input type="text" class="input--style-2" id="titre" required [(ngModel)]="formation.titre" name="titre">
           </div>
           <div class="row-space">
-          <div class="col-2">
+          <div class="form-group">
           <div class="input-group">
             <div class="rs-select2 js-select-simple select--no-search">
             <label for="">Type</label>
-            <select name="select" [(ngModel)]="formation.type_formation"  class="form-select form-select-lg mb-3">
+            <select name="select" [(ngModel)]="formation.type_formation"  class="form-select browser-default custom-select">
               <option [ngValue]="undefined">Type</option>
               <option value="Nationale">  Nationale </option>
               <option value="Internationale">  Internationale </option>
@@ -81,11 +81,11 @@
                 <input type="number"  class="input--style-2" id="budget" required [(ngModel)]="formation.budget" name="budget">
               </div>
           <div class="row-space">
-          <div class="col-2">
+          <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Domaine</label>
-                  <select name="select" [(ngModel)]="formation.domaine" (ngModelChange)="setNewDomaine($event)" class="form-select form-select-lg mb-3 ">
+                  <select name="select" [(ngModel)]="formation.domaine" (ngModelChange)="setNewDomaine($event)" class="form-select browser-default custom-select ">
                     <option [ngValue]="undefined">Domaine</option>
                     <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
                   </select>

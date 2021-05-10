@@ -502,13 +502,3 @@ input {
 .p-t-180 {
     padding-top: 78px;
 }
-
-
-body{
-background: #91C499;
-background: radial-gradient(circle, #a0a917 0%, #3ab7a626 100%);
-}
-
-.page-wrapper {
-    min-height: 91vh;
-}

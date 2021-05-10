@@ -52,11 +52,11 @@
             <input type="number"  class="input--style-2" id="tel" required [(ngModel)]="formateur.tel" name="tel">
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Type</label>
-                  <select name="select" [(ngModel)]="formateur.type"  class="form-select form-select-lg mb-3">
+                  <select name="select" [(ngModel)]="formateur.type"  class="form-select browser-default custom-select">
                     <option [ngValue]="undefined">Type</option>
                     <option value="Interne">  Interne </option>
                     <option value="Externe">  Externe </option>
@@ -67,11 +67,11 @@
             </div>
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Organisme</label>
-                  <select name="select" [(ngModel)]="formateur.organisme" (ngModelChange)="setNewOrganisme($event)" class="form-select form-select-lg mb-3 ">
+                  <select name="select" [(ngModel)]="formateur.organisme" (ngModelChange)="setNewOrganisme($event)" class="form-select browser-default custom-select">
                     <option [ngValue]="undefined">Organisme</option>
                     <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
                   </select>

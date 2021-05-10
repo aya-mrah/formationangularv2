@@ -54,11 +54,26 @@
             <input  placeholder="55-555-123" type="tel"  class="input--style-2" id="tel" required [(ngModel)]="participant.tel" name="tel">
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label for="">Type</label>
+                  <select name="select" [(ngModel)]="participant.type"  class="form-select browser-default custom-select">
+                    <option [ngValue]="undefined">Type</option>
+                    <option value="Nationale">  Nationale </option>
+                    <option value="Internationale">  Internationale </option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-space">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Profil</label>
-                  <select name="select" [(ngModel)]="participant.profil" (ngModelChange)="setNewProfil($event)" class="form-select form-select-lg mb-3 ">
+                  <select name="select" [(ngModel)]="participant.profil" (ngModelChange)="setNewProfil($event)" class="form-select browser-default custom-select ">
                     <option [ngValue]="undefined">Profil</option>
                     <option *ngFor="let profil of profils"  [ngValue]="profil" >  {{profil.libelle}} </option>
                   </select>
@@ -68,11 +83,11 @@
             </div>
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Pays</label>
-                  <select name="select" [(ngModel)]="participant.pays" (ngModelChange)="setNewPays($event)" class="form-select form-select-lg mb-3 ">
+                  <select name="select" [(ngModel)]="participant.pays" (ngModelChange)="setNewPays($event)" class="form-select browser-default custom-select ">
                     <option [ngValue]="undefined">Pays</option>
                     <option *ngFor="let pays of payss"  [ngValue]="pays" >  {{pays.libelle}} </option>
                   </select>
@@ -82,11 +97,11 @@
             </div>
           </div>
           <div class="row-space">
-            <div class="col-2">
+            <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label for="">Organisme</label>
-                  <select name="select" [(ngModel)]="participant.organisme" (ngModelChange)="setNewOrganisme($event)" class="form-select form-select-lg mb-3 ">
+                  <select name="select" [(ngModel)]="participant.organisme" (ngModelChange)="setNewOrganisme($event)" class="form-select browser-default custom-select">
                     <option [ngValue]="undefined">Organisme</option>
                     <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
                   </select>

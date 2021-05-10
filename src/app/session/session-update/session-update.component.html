@@ -1,93 +1,187 @@
-<h3>Update Session</h3>
-<div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="id">Id</label>
-      <input type="text" class="form-control" id="id" required [(ngModel)]="session.id" name="id">
+
+
+
+
+
+
+
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <!-- Required meta tags-->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Colorlib Templates">
+      <meta name="author" content="Colorlib">
+      <meta name="keywords" content="Colorlib Templates">
+
+      <!-- Title Page-->
+      <title>Au Register Forms by Colorlib</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!-- Icons font CSS-->
+      <link href="/src/app/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+      <link href="/src/app/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <!-- Font special for pages-->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+      <!-- Vendor CSS-->
+      <link href="/src/app/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+      <link href="/src/app/assets/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+      <!-- Main CSS-->
+      <!--  <link href="css/main.css" rel="stylesheet" media="all">-->
+    </head>
+
+    <body>
+    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+      <div class="wrapper wrapper--w960">
+        <div class="card card-2">
+          <div class="card-heading"></div>
+          <div class="card-body" >
+            <h2 class="title">UPDATE Session</h2>
+            <form  (ngSubmit)="onSubmit()">
+
+              <div class="input-group">
+                <label for="date_deb">Date début</label>
+                <input type="date"  class="input--style-2" id="date_deb" required [(ngModel)]="session.date_deb" name="date_deb">
+              </div>
+              <div class="input-group">
+                <label for="date_fin">Date Fin</label>
+                <input type="date"    class="input--style-2" id="date_fin" required [(ngModel)]="session.date_fin" name="date_fin">
+              </div>
+              <div class="input-group">
+                <label for="lieu">Lieu</label>
+                <input type="text" class="input--style-2" id="lieu" required [(ngModel)]="session.lieu" name="lieu">
+              </div>
+              <div class="input-group">
+                <label for="nbparticipant"> nb participant</label>
+                <input type="text" class="input--style-2" id="nbparticipant" required [(ngModel)]="session.nbparticipant" name="nbparticipant">
+              </div>
+              <div class="row-space">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search">
+                      <label >Formation</label>
+                      <select name="formation" [(ngModel)]="session.formation"  class=" form-select browser-default custom-select">
+                        <option hidden [ngValue]="session.formation"  [attr.selected]="true" >  {{session.formation.titre}} </option>
+                        <option *ngFor="let formation of formations"  [ngValue]="formation"  [attr.selected]="session.formation.id==formation.id ? true : null">   {{session.formation.titre}}</option>
+                      </select>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-space">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search">
+                      <label >Organisme</label>
+                      <select name="organisme" [(ngModel)]="session.organisme"  class=" form-select browser-default custom-select">
+                        <option hidden [ngValue]="session.organisme"  [attr.selected]="true" >  {{session.organisme.libelle}} </option>
+                        <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="session.organisme.id==organisme.id ? true : null"> {{organisme.libelle}}  </option>
+                      </select>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-space">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search">
+                      <label >Formateur</label>
+                      <select name="formateur" [(ngModel)]="session.formateur"  class=" form-select browser-default custom-select">
+                        <option hidden [ngValue]="session.formateur"  [attr.selected]="true" >  {{session.formateur.prenom}} {{session.formateur.nom}} </option>
+                        <option *ngFor="let formateur of formateurs"  [ngValue]="formateur"  [attr.selected]="session.formateur.id==formateur.id ? true : null"> {{formateur.prenom}} {{formateur.nom}} </option>
+                      </select>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="row-space">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search">
+                      <label for="">Participants</label>
+                      <mat-form-field class="example-chip-list" >
+                <mat-label>Participants</mat-label>
+                <!--List Autocomplete de participant-->
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+                  <mat-option *ngFor="let participant of filteredParticipants | async" [value]="participant">
+                    {{participant.mail}}
+                  </mat-option>
+                </mat-autocomplete>
+                <!-- Les chips des participant selected-->
+                <mat-chip-list #chipList aria-label="Participant selection"  >
+                  <mat-chip
+                    *ngFor="let participant of participants"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (removed)="remove(participant)">
+                    {{participant.mail}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <!--Input de saisie de participant -->
+                  <input
+                    placeholder="New Participants..."
+                    #participantInput
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+
+              </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="p-t-30">
+                <button class="btn btn--radius btn--green" type="submit">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="date_deb">Date debut:</label>
-      <input type="Date" class="form-control" id="date_deb" required [(ngModel)]="session.date_deb" name="date_deb">
-    </div>
-    <div class="form-group">
-      <label for="date_fin">Date de fin</label>
-      <input type="Date" class="form-control" id="date_fin" required [(ngModel)]="session.date_fin" name="date_fin">
-    </div>
-    <div class="form-group">
-      <label for="lieu">Lieu</label>
-      <input type="text" class="form-control" id="lieu" required [(ngModel)]="session.lieu" name="lieu">
-    </div>
-    <div class="form-group">
-      <label for="nbparticipant">Nombre de participant : </label>
-      <input type="text" class="form-control" id="nbparticipant" required [(ngModel)]="session.nbparticipant" name="nbparticipant">
-    </div>
-    <div class="form-group">
-      <label>Formation</label>
-      <select name="formation" [(ngModel)]="session.formation"  class=" form-select browser-default custom-select">
 
-        <option hidden [ngValue]="session.formation"  [attr.selected]="true">  {{session.formation.titre}} </option>
+    <!-- Jquery JS-->
+    <script src="/src/app/assets/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/src/app/assets/vendor/select2/select2.min.js"></script>
+    <script src="/src/app/assets/vendor/datepicker/moment.min.js"></script>
+    <script src="/src/app/assets/vendor/datepicker/daterangepicker.js"></script>
 
-        <option *ngFor="let formation of formations"  [ngValue]="formation"  [attr.selected]="session.formation.id==formation.id ? true : null">  {{formation.titre}} </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Organisme</label>
-      <select name="organisme" [(ngModel)]="session.organisme"  class=" form-select browser-default custom-select">
+    <!-- Main JS-->
+    <script src="/src/app/assets/js/global.js"></script>
 
-        <option hidden [ngValue]="session.organisme"  [attr.selected]="true">  {{session.organisme.libelle}} </option>
+    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
-        <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="session.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Formateur</label>
-      <select name="formateur" [(ngModel)]="session.formateur"  class=" form-select browser-default custom-select">
-
-        <option hidden [ngValue]="session.formateur"  [attr.selected]="true">  {{session.formateur.prenom}} {{session.formateur.nom}}</option>
-
-        <option *ngFor="let formateur of formateurs"  [ngValue]="formateur"  [attr.selected]="session.formateur.id==formateur.id ? true : null"> {{formateur.prenom}} {{formateur.nom}} </option>
-      </select>
-    </div>
-
-
-    <mat-form-field class="example-chip-list" >
-      <mat-label>Saisie participant</mat-label>
-      <!--List Autocomplete de participant-->
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
-        <mat-option *ngFor="let participant of filteredParticipants | async" [value]="participant">
-          {{participant.mail}}
-        </mat-option>
-      </mat-autocomplete>
-      <!-- Les chips des participant selected-->
-      <mat-chip-list #chipList aria-label="Participant selection"  >
-        <mat-chip
-          *ngFor="let participant of participants"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="remove(participant)">
-          {{participant.mail}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <!--Input de saisie de participant -->
-        <input
-        placeholder="New Participants..."
-          #participantInput
-          [matAutocomplete]="auto"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)">
-      </mat-chip-list>
-    
-    </mat-form-field>
+    </html>
+    <!-- end document-->
 
 
 
 
 
 
-
-
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
-</div>

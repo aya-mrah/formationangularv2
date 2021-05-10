@@ -23,6 +23,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class SessionUpdateComponent implements OnInit {
 //
+
+
+
 visible = true;
 selectable = true;
 removable = true;
@@ -64,10 +67,10 @@ participantInput!: ElementRef<HTMLInputElement>;
               private formateurService: FormateurService) {
                 let resp = this.participantService.getParticipantsList()
        resp.subscribe(report =>this.allParticipants = report as Participant[])
-                
+
                 this.filteredParticipants = this.pariticpantCtrl.valueChanges.pipe(
                   map((participant: Participant | null) => participant ? this._filter(participant) : this.allParticipants.slice()));
-                
+
 
                }
 
@@ -115,7 +118,7 @@ participantInput!: ElementRef<HTMLInputElement>;
 
   gotoList() {
     this.router.navigate(['/sessionliste']);
- 
+
   }
 
   add(event: MatChipInputEvent): void {
