@@ -4,6 +4,7 @@ import { Formateur } from 'src/app/model/formateur';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormateurService } from 'src/app/service/formateur.service';
 import {OrganismeService} from "src/app/service/organisme.service";
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-formateur-update',
@@ -11,6 +12,20 @@ import {OrganismeService} from "src/app/service/organisme.service";
   styleUrls: ['./formateur-update.component.css']
 })
 export class FormateurUpdateComponent implements OnInit {
+
+     isValidFormSubmitted = false;
+     formateurForm = new FormGroup({
+            nom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+            prenom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+            email: new FormControl('', [Validators.required,Validators.email]),
+            tel: new FormControl('', [Validators.required,Validators.min(8)]),
+            type: new FormControl('', [Validators.required]),
+            organismee: new FormControl('', [Validators.required])
+     });
+
+         submitted = false;
+
+
 
        id: number;
        formateur: Formateur;
@@ -47,12 +62,18 @@ export class FormateurUpdateComponent implements OnInit {
        }
 
        onSubmit() {
+
+              this.isValidFormSubmitted = true;
          this.updateFormateur();
        }
 
        gotoList() {
          this.router.navigate(['/formateurliste']);
        }
+           onReset() {
+                            this.submitted = false;
+                            this.formateurForm.reset();
+                        }
 
 }
 

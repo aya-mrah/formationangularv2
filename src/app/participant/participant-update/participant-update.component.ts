@@ -7,6 +7,7 @@ import {Formateur} from "src/app/model/formateur";
 import {PaysService} from "src/app/service/pays.service";
 import {ProfilService} from "src/app/service/profil.service";
 import {OrganismeService} from "src/app/service/organisme.service";
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-participant-update',
@@ -14,6 +15,24 @@ import {OrganismeService} from "src/app/service/organisme.service";
   styleUrls: ['./participant-update.component.css']
 })
 export class ParticipantUpdateComponent implements OnInit {
+isValidFormSubmitted = false;
+     participantForm = new FormGroup({
+     nom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     prenom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     email: new FormControl('', [Validators.required,Validators.email]),
+     tel: new FormControl('', [Validators.required,Validators.min(8)]),
+     type: new FormControl('', [Validators.required]),
+     organismee: new FormControl('', [Validators.required]),
+     paysee: new FormControl('', [Validators.required]),
+     profilee: new FormControl('', [Validators.required])
+     });
+         submitted = false;
+
+
+
+
+
+
  id: number;
   participant: Participant;
   payss: any;
@@ -60,10 +79,16 @@ export class ParticipantUpdateComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isValidFormSubmitted = true;
     this.updateParticipant();
+    this.gotoList() ;
   }
 
   gotoList() {
     this.router.navigate(['/participantliste']);
   }
+  onReset() {
+            this.submitted = false;
+             this.participantForm.reset();
+                          }
 }

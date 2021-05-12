@@ -40,68 +40,86 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">UPDATE Formateur</h2>
-        <form  (ngSubmit)="onSubmit()">
+        <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
           <div class="input-group">
-            <label for="nom">Nom</label>
-            <input type="text" class="input--style-2" id="nom" required [(ngModel)]="formateur.nom" name="nom">
+            <label for="nom">Titre </label>
+            <input type="text"  class="input--style-2" id="nom" placeholder="Nom" required minlength="2" #unom="ngModel" [(ngModel)]="formateur.nom" name="nom" #nom="ngModel">
+            <div class="error"   *ngIf="unom.errors"  class="card-panel red accent-1" [hidden]="nom.valid || nom.pristine" [ngClass] = "'error'">
+              <div *ngIf="unom.errors.required">Nom est obligatoire</div>
+              <div *ngIf="unom.errors.minlength">Minimum 2 lettres</div>
+            </div>
           </div>
           <div class="input-group">
             <label for="prenom">Prénom</label>
-            <input type="text" class="input--style-2" id="prenom" required [(ngModel)]="formateur.prenom" name="prenom">
+            <input type="text"  class="input--style-2" id="prenom" placeholder="Prénom" required minlength="2" #unpre="ngModel" [(ngModel)]="formateur.prenom" name="prenom" #pre="ngModel">
+            <div class="error"   *ngIf="unpre.errors"  class="card-panel red accent-1" [hidden]="pre.valid || pre.pristine" [ngClass] = "'error'">
+              <div *ngIf="unpre.errors.required">Prénom est obligatoire</div>
+              <div *ngIf="unpre.errors.minlength">Minimum 2 lettres</div>
+            </div>
           </div>
           <div class="input-group">
-            <label for="email">Email</label>
-            <input type="text" class="input--style-2" id="email" required [(ngModel)]="formateur.email" name="email">
-          </div>
-          <div class="input-group">
-            <label for="tel">Tél</label>
-            <input type="number" class="input--style-2" id="tel" required [(ngModel)]="formateur.tel" name="tel">
-          </div>
-          <div class="row-space">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Type</label>
-
-                 <!--
-                 <h6>{{formateur.type}}</h6>
-                 <select name="select" [(ngModel)]="formateur.type" class=" form-select browser-default custom-select">
-                    <option [hidden]="formateur.type == 'Interne' ? true : null " value="Interne">Change to Interne </option>
-                    <option [hidden]="formateur.type == 'Externe' ? true : null " value="Externe">Change to  Externe </option>
-                  </select> -->
-
-                  <select name="select2" [(ngModel)]="formateur.type"  class=" form-select browser-default custom-select">
-                    <option hidden >  {{formateur.type}} </option>
-                    <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formateur.type==type ? true : null">  {{type}} </option>
-                  </select>
-
+            <label for="eemail">Email </label>
+            <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="formateur.email" name="eemail" #namee="ngModel">
+            <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
+              <div *ngIf="uemail.errors.required">Email est obligatoire</div>
+              <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
+            </div>
+            <div class="input-group">
+              <label for="tel">Tél</label>
+              <input type="text"  class="input--style-2" id="tel" placeholder="Tél" required minlength="8" #untel="ngModel" [(ngModel)]="formateur.tel" name="tel" #tel="ngModel">
+              <div class="error"   *ngIf="untel.errors"  class="card-panel red accent-1" [hidden]="tel.valid || tel.pristine" [ngClass] = "'error'">
+                <div *ngIf="untel.errors.required">Téléphone est obligatoire</div>
+                <div *ngIf="untel.errors.minlength">Minimum 8 nombres</div>
+              </div>
+            </div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Type</label>
+                    <select name="select" required #untype="ngModel" [(ngModel)]="formateur.type" #type="ngModel" class="form-select browser-default custom-select ">
+                      <option hidden >  {{formateur.type}} </option>
+                      <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formateur.type==type ? true : null">  {{type}} </option>
+                    </select>
+                    <div class="error"   *ngIf="untype.errors"  class="card-panel red accent-1" [hidden]="type.valid || type.pristine" [ngClass] = "'error'">
+                      <div *ngIf="untype.errors.required"> Type est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row-space">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Organisme</label>
-                  <select name="select" [(ngModel)]="formateur.organisme"  class=" form-select browser-default custom-select">
-
-                    <option hidden [ngValue]="formateur.organisme"  [attr.selected]="true">  {{formateur.organisme.libelle}} </option>
-
-                    <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="formateur.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
-                  </select>
-
-                  <div class="select-dropdown"></div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Organisme</label>
+                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="formateur.organisme"  #org="ngModel" class="form-select browser-default custom-select ">
+                      <option  hidden [ngValue]="formateur.organisme" [attr.selected]="true">{{formateur.organisme.libelle}}</option>
+                      <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="formateur.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
+                    </select>
+                    <div class="error"   *ngIf="unorg.errors"  class="card-panel red accent-1" [hidden]="org.valid || org.pristine" [ngClass] = "'error'">
+                      <div *ngIf="unorg.errors.required"> Organisme est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="text-center">
 
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">
-              <span class="glyphicon glyphicon-ok-circle"></span> Submit
-            </button>
+              <div class="p-t-30">
+                <button class="btn btn--radius btn--green" type="submit">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Submit
+                </button>
+              </div>
+              <div class="p-t-30">
+                <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>

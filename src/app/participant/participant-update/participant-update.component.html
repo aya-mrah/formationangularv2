@@ -35,97 +35,122 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">UPDATE Participant</h2>
-        <form  (ngSubmit)="onSubmit()">
-
+        <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
 
           <div class="input-group">
-            <label for="nom">Nom</label>
-            <input type="text" class="input--style-2" id="nom" required [(ngModel)]="participant.nom" name="nom">
+            <label for="nom">Nom </label>
+            <input type="text"  class="input--style-2" id="nom" placeholder="Nom" required minlength="2" #unom="ngModel" [(ngModel)]="participant.nom" name="nom" #nom="ngModel">
+            <div class="error"   *ngIf="unom.errors"  class="card-panel red accent-1" [hidden]="nom.valid || nom.pristine" [ngClass] = "'error'">
+              <div *ngIf="unom.errors.required">Nom est obligatoire</div>
+              <div *ngIf="unom.errors.minlength">Minimum 2 lettres</div>
+            </div>
           </div>
           <div class="input-group">
             <label for="prenom">Prénom</label>
-            <input type="text" class="input--style-2" id="prenom" required [(ngModel)]="participant.prenom" name="prenom">
+            <input type="text"  class="input--style-2" id="prenom" placeholder="Prénom" required minlength="2" #unpre="ngModel" [(ngModel)]="participant.prenom" name="prenom" #pre="ngModel">
+            <div class="error"   *ngIf="unpre.errors"  class="card-panel red accent-1" [hidden]="pre.valid || pre.pristine" [ngClass] = "'error'">
+              <div *ngIf="unpre.errors.required">Prénom est obligatoire</div>
+              <div *ngIf="unpre.errors.minlength">Minimum 2 lettres</div>
+            </div>
           </div>
           <div class="input-group">
-            <label for="email">Email</label>
-            <input type="text" class="input--style-2" id="email" required [(ngModel)]="participant.mail" name="email">
-          </div>
-          <div class="input-group">
-            <label for="tel">Tél</label>
-            <input type="text" class="input--style-2" id="tel" required [(ngModel)]="participant.tel" name="tel">
-          </div>
-          <div class="row-space">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Type</label>
-                  <select name="type2" [(ngModel)]="participant.type"  class=" form-select browser-default custom-select">
-                    <option hidden >  {{participant.type}} </option>
-                    <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="participant.type==type ? true : null">  {{type}} </option>
-                  </select>
-                  <div class="select-dropdown"></div>
+            <label for="eemail">Email </label>
+            <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="participant.mail" name="eemail" #namee="ngModel">
+            <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
+              <div *ngIf="uemail.errors.required">Email est obligatoire</div>
+              <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
+            </div>
+            <div class="input-group">
+              <label for="tel">Tél</label>
+              <input type="text"  class="input--style-2" id="tel" placeholder="Tél" required minlength="8" #untel="ngModel" [(ngModel)]="participant.tel" name="tel" #tel="ngModel">
+              <div class="error"   *ngIf="untel.errors"  class="card-panel red accent-1" [hidden]="tel.valid || tel.pristine" [ngClass] = "'error'">
+                <div *ngIf="untel.errors.required">Téléphone est obligatoire</div>
+                <div *ngIf="untel.errors.minlength">Minimum 8 nombres</div>
+              </div>
+            </div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Type</label>
+                    <select name="select" required #untype="ngModel" [(ngModel)]="participant.type" #type="ngModel" class="form-select browser-default custom-select ">
+                      <option hidden >  {{participant.type}} </option>
+                      <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="participant.type==type ? true : null">  {{type}} </option>
+                    </select>
+                    <div class="error"   *ngIf="untype.errors"  class="card-panel red accent-1" [hidden]="type.valid || type.pristine" [ngClass] = "'error'">
+                      <div *ngIf="untype.errors.required"> Type est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row-space">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Profil</label>
-                  <select name="profil" [(ngModel)]="participant.profil"  class=" form-select browser-default custom-select">
-
-                    <option hidden [ngValue]="participant.profil"  [attr.selected]="true">  {{participant.profil.libelle}} </option>
-                    <option *ngFor="let profil of profils"  [ngValue]="profil"  [attr.selected]="profil.id==participant.profil.id ? true : null">  {{profil.libelle}} </option>
-                  </select>
-                  <div class="select-dropdown"></div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Profil</label>
+                    <select name="profil" required #unpro="ngModel" [(ngModel)]="participant.profil"  #pro="ngModel" class="form-select browser-default custom-select ">
+                      <option hidden [ngValue]="participant.profil"  [attr.selected]="true">  {{participant.profil.libelle}} </option>
+                      <option *ngFor="let profil of profils"  [ngValue]="profil"  [attr.selected]="profil.id==participant.profil.id ? true : null">  {{profil.libelle}} </option>
+                    </select>
+                    <div class="error"   *ngIf="unpro.errors"  class="card-panel red accent-1" [hidden]="pro.valid || pro.pristine" [ngClass] = "'error'">
+                      <div *ngIf="unpro.errors.required"> Profil est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-
-          <div class="row-space">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="rs-select2 js-select-simple select--no-search">
-                <label for="">Pays</label>
-                <select name="pays" [(ngModel)]="participant.pays"  class=" form-select browser-default custom-select">
-
-                  <option hidden [ngValue]="participant.pays"  [attr.selected]="true">  {{participant.pays.libelle}} </option>
-
-                  <option *ngFor="let pays of payss"  [ngValue]="pays"  [attr.selected]="participant.pays.id==pays.id ? true : null">  {{pays.libelle}} </option>
-                </select>
-
-                <div class="select-dropdown"></div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Pays</label>
+                    <select name="pays" required #unpay="ngModel" [(ngModel)]="participant.pays"  #pay="ngModel" class="form-select browser-default custom-select ">
+                      <option hidden [ngValue]="participant.pays"  [attr.selected]="true">  {{participant.pays.libelle}} </option>
+                      <option *ngFor="let pays of payss"  [ngValue]="pays"  [attr.selected]="participant.pays.id==pays.id ? true : null">  {{pays.libelle}} </option>
+                    </select>
+                    <div class="error"   *ngIf="unpay.errors"  class="card-panel red accent-1" [hidden]="pay.valid || pay.pristine" [ngClass] = "'error'">
+                      <div *ngIf="unpay.errors.required"> Pays est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-      </div>
-
-          <div class="row-space">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="rs-select2 js-select-simple select--no-search">
-                <label for="">Organisme</label>
-                <select name="organisme" [(ngModel)]="participant.organisme"  class=" form-select browser-default custom-select">
-
-                  <option hidden [ngValue]="participant.organisme"  [attr.selected]="true">  {{participant.organisme.libelle}} </option>
-
-                  <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="participant.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
-                </select>
-
-                <div class="select-dropdown"></div>
+            <div class="row-space">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="rs-select2 js-select-simple select--no-search">
+                    <label >Organisme</label>
+                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="participant.organisme"  #org="ngModel" class="form-select browser-default custom-select ">
+                      <option hidden [ngValue]="participant.organisme"  [attr.selected]="true">  {{participant.organisme.libelle}} </option>
+                      <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="participant.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
+                    </select>
+                    <div class="error"   *ngIf="unorg.errors"  class="card-panel red accent-1" [hidden]="org.valid || org.pristine" [ngClass] = "'error'">
+                      <div *ngIf="unorg.errors.required"> Organisme est obligatoire</div>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-      </div>
 
 
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">
-              <span class="glyphicon glyphicon-ok-circle"></span> Submit
-            </button>
+            <div class="text-center">
+
+              <div class="p-t-30">
+                <button class="btn btn--radius btn--green" type="submit">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Submit
+                </button>
+              </div>
+              <div class="p-t-30">
+                <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                  <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>

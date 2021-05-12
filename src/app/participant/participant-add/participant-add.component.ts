@@ -8,8 +8,7 @@ import {PaysService} from "src/app/service/pays.service";
 import {Pays} from "src/app//model/pays";
 import {Profil} from "src/app//model/profil";
 import {ProfilService} from "src/app//service/profil.service";
-import {FormControl, Validators} from '@angular/forms'
-
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 
 interface Food {
@@ -24,6 +23,20 @@ interface Food {
 
 
 export class ParticipantAddComponent implements OnInit {
+ isValidFormSubmitted = false;
+     participantForm = new FormGroup({
+     nom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     prenom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     email: new FormControl('', [Validators.required,Validators.email]),
+     tel: new FormControl('', [Validators.required,Validators.min(8)]),
+     type: new FormControl('', [Validators.required]),
+     organismee: new FormControl('', [Validators.required]),
+     paysee: new FormControl('', [Validators.required]),
+     profilee: new FormControl('', [Validators.required])
+     });
+
+
+
 participant: Participant = new Participant();
   submitted = false;
   payss: any;
@@ -67,13 +80,26 @@ participant: Participant = new Participant();
     }
 
   onSubmit() {
-    this.submitted = true;
-    this.save();
+   this.isValidFormSubmitted = false;
+                          if (this.participant.nom.trim().length<2) {
+                             return ;
+                             }
+                              if (this.participant.prenom.trim().length<2) {
+                                return ; }
+                      this.isValidFormSubmitted = true;
+                      this.submitted = true;
+                      this.save();
+                      this.gotoList();
+
   }
 
   gotoList() {
     this.router.navigate(['/participantliste']);
   }
+    onReset() {
+                    this.submitted = false;
+                    this.participantForm.reset();
+                }
 
   ngOnInit(): void {
     this.paysService.getPayssList().subscribe(data => {

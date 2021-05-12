@@ -3,7 +3,7 @@ import { FormateurService } from 'src/app/service/formateur.service';
 import { Formateur } from 'src/app/model/formateur';
 import { Organisme } from 'src/app/model/organisme';
 import { Router } from '@angular/router';
-
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {OrganismeService} from 'src/app/service/organisme.service';
 @Component({
   selector: 'app-formateur-add',
@@ -11,6 +11,17 @@ import {OrganismeService} from 'src/app/service/organisme.service';
   styleUrls: ['./formateur-add.component.css']
 })
 export class FormateurAddComponent implements OnInit {
+     isValidFormSubmitted = false;
+     formateurForm = new FormGroup({
+     nom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     prenom: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     email: new FormControl('', [Validators.required,Validators.email]),
+     tel: new FormControl('', [Validators.required,Validators.min(8)]),
+     type: new FormControl('', [Validators.required]),
+     organismee: new FormControl('', [Validators.required])
+     });
+
+
 
  formateur: Formateur = new Formateur();
    submitted = false;
@@ -41,9 +52,21 @@ export class FormateurAddComponent implements OnInit {
 
 
    onSubmit() {
-   this.submitted = true;
-   console.log(this.formateur);
-   this.save();
+
+
+           this.isValidFormSubmitted = false;
+                        if (this.formateur.nom.trim().length<2) {
+                           return ;
+                           }
+                            if (this.formateur.prenom.trim().length<2) {
+                              return ; }
+
+
+                    this.isValidFormSubmitted = true;
+                    this.submitted = true;
+                    this.save();
+                    this.gotoList();
+
    }
 
    gotoList() {
@@ -55,5 +78,9 @@ export class FormateurAddComponent implements OnInit {
    this.organismes = data;
    });
    }
+   onReset() {
+                  this.submitted = false;
+                  this.formateurForm.reset();
+              }
 
  }

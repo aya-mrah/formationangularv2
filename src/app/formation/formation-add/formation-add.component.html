@@ -44,7 +44,7 @@
       <div class="card-heading"></div>
       <div class="card-body" [hidden]="submitted">
         <h2 class="title">Ajouter Formation</h2>
-        <form  (ngSubmit)="onSubmit()">
+        <form  (ngSubmit)="onSubmit()"  #myForm="ngForm" >
 
           <div class="input-group">
             <label for="titre">Titre </label>
