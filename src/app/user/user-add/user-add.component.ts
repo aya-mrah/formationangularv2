@@ -34,6 +34,8 @@ export class UserAddComponent implements OnInit {
 
   onSubmit() {
 
+
+
            this.isValidFormSubmitted = false;
                         if (this.form.username.trim().length<2) {
                            return ;

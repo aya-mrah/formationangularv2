@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {Pays} from "src/app/model/pays";
 import {Domaine} from "src/app/model/domaine";
 import {DomaineService} from "src/app/service/domaine.service";
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,18 @@ import {DomaineService} from "src/app/service/domaine.service";
   styleUrls: ['./formation-add.component.css']
 })
 export class FormationAddComponent implements OnInit {
+ isValidFormSubmitted = false;
+     formationForm = new FormGroup({
+     titre: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     type: new FormControl('', [Validators.required]),
+     annee: new FormControl('', [Validators.required]),
+     nbSession: new FormControl('', [Validators.required]),
+     duree: new FormControl('', [Validators.required]),
+     budget: new FormControl('', [Validators.required]),
+     domainee: new FormControl('', [Validators.required])
+     });
+
+
 
        formation: Formation = new Formation();
        submitted = false;
@@ -34,8 +47,14 @@ export class FormationAddComponent implements OnInit {
            error => console.log(error));
        }
        onSubmit() {
-         this.submitted = true;
-         this.save();
+       if (this.formationForm.invalid) {
+                   return;
+               }
+                 this.isValidFormSubmitted = true;
+                 this.submitted = true;
+                 this.save();
+                 this.gotoList();
+
        }
        setNewDomaine(domaine: Domaine): void {
          console.log(domaine);
@@ -50,4 +69,8 @@ export class FormationAddComponent implements OnInit {
            this.domaines = data;
          });
        }
+         onReset() {
+               this.submitted = false;
+               this.formationForm.reset();
+           }
      }

@@ -34,62 +34,98 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">UPDATE Formation</h2>
-        <form  (ngSubmit)="onSubmit()">
+        <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
+
           <div class="input-group">
-            <label for="titre">Titre</label>
-            <input type="text" class="input--style-2" id="titre" required [(ngModel)]="formation.titre" name="titre">
-          </div>
-          <div class="row-space">
-            <div class="form-group">
-          <div class="input-group">
-            <div class="rs-select2 js-select-simple select--no-search">
-            <label for="">Type</label>
-              <select name="select2" [(ngModel)]="formation.type_formation"  class=" form-select browser-default custom-select">
-                <option hidden >  {{formation.type_formation}} </option>
-                <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formation.type_formation==type ? true : null">  {{type}} </option>
-              </select>
-              <div class="select-dropdown"></div>
+            <label for="titre">Titre </label>
+            <input type="text"  class="input--style-2" id="titre" placeholder="Titre" required minlength="2" #untitre="ngModel" [(ngModel)]="formation.titre" name="titre" #titre="ngModel">
+            <div class="error"   *ngIf="untitre.errors"  class="card-panel red accent-1" [hidden]="titre.valid || titre.pristine" [ngClass] = "'error'">
+              <div *ngIf="untitre.errors.required">Titre est obligatoire</div>
+              <div *ngIf="untitre.errors.minlength">Minimum 2 lettres</div>
             </div>
           </div>
-            </div>
-          </div>
-          <div class="input-group">
-            <label for="annee">Année</label>
-            <input type="number" class="input--style-2" id="annee" required [(ngModel)]="formation.annee" name="annee">
-          </div>
-          <div class="input-group">
-            <label for="nbSession">Nb Session</label>
-            <input type="text" class="input--style-2" id="nbSession" required [(ngModel)]="formation.nbSession" name="nbSession">
-          </div>
-          <div class="input-group">
-            <label for="duree">Durée</label>
-            <input type="number" class="input--style-2" id="duree" required [(ngModel)]="formation.duree" name="duree">
-          </div>
-          <div class="input-group">
-            <label for="budget">Budget</label>
-            <input type="number" class="input--style-2" id="budget" required [(ngModel)]="formation.budget" name="budget">
-          </div>
+
+
           <div class="row-space">
             <div class="form-group">
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
-                  <label for="">Domaine</label>
-                  <select name="select" [(ngModel)]="formation.domaine"  class=" form-select browser-default custom-select">
-
-                    <option hidden [ngValue]="formation.domaine"  [attr.selected]="true">  {{formation.domaine.libelle}} </option>
-
-                    <option *ngFor="let domaine of domaines"  [ngValue]="domaine"  [attr.selected]="formation.domaine.id==domaine.id ? true : null">  {{domaine.libelle}} </option>
+                  <label >Type</label>
+                  <select name="select" required #untype="ngModel" [(ngModel)]="formation.type_formation" #type="ngModel" class="form-select browser-default custom-select ">
+                    <option hidden >  {{formation.type_formation}} </option>
+                    <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formation.type_formation==type ? true : null">  {{type}} </option>
                   </select>
-                  <div class="select-dropdown"></div>
+                  <div class="error"   *ngIf="untype.errors"  class="card-panel red accent-1" [hidden]="type.valid || type.pristine" [ngClass] = "'error'">
+                    <div *ngIf="untype.errors.required"> Type est obligatoire</div>
+                    <div class="select-dropdown"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">
-              <span class="glyphicon glyphicon-ok-circle"></span> Submit
-            </button>
+          <div class="input-group">
+            <label for="annee">Année </label>
+            <input type="number"  class="input--style-2" id="annee" placeholder="Année" required  #unannee="ngModel" [(ngModel)]="formation.annee" name="annee" #annee="ngModel">
+            <div class="error"   *ngIf="unannee.errors"  class="card-panel red accent-1" [hidden]="annee.valid || annee.pristine" [ngClass] = "'error'">
+              <div *ngIf="unannee.errors.required">Année est obligatoire</div>
+            </div>
           </div>
+
+          <div class="input-group">
+            <label for="nbSession">Nb Session</label>
+            <input type="number"  class="input--style-2" id="nbSession" placeholder="Nb Session" required  #unsess="ngModel" [(ngModel)]="formation.nbSession" name="nbSession" #sess="ngModel">
+            <div class="error"   *ngIf="unsess.errors"  class="card-panel red accent-1" [hidden]="sess.valid || sess.pristine" [ngClass] = "'error'">
+              <div *ngIf="unsess.errors.required">Nb Session est obligatoire</div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="duree">Durée (/Jour)</label>
+            <input type="number"  class="input--style-2" id="duree" placeholder="Durée" required  #unduree="ngModel" [(ngModel)]="formation.duree" name="duree" #dur="ngModel">
+            <div class="error"   *ngIf="unduree.errors"  class="card-panel red accent-1" [hidden]="dur.valid || dur.pristine" [ngClass] = "'error'">
+              <div *ngIf="unduree.errors.required">Durée est obligatoire</div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="budget">Budget</label>
+            <input type="number"  class="input--style-2" id="budget" placeholder="Budget" required  #unbud="ngModel" [(ngModel)]="formation.budget" name="budget" #bud="ngModel">
+            <div class="error"   *ngIf="unbud.errors"  class="card-panel red accent-1" [hidden]="bud.valid || bud.pristine" [ngClass] = "'error'">
+              <div *ngIf="unbud.errors.required">Budget est obligatoire</div>
+            </div>
+          </div>
+
+          <div class="row-space">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <label >Domaine</label>
+                  <select name="domaine" required #undom="ngModel" [(ngModel)]="formation.domaine"  #dom="ngModel" class="form-select browser-default custom-select ">
+                    <option hidden [ngValue]="formation.domaine"  [attr.selected]="true">  {{formation.domaine.libelle}} </option>
+
+                    <option *ngFor="let domaine of domaines"  [ngValue]="domaine"  [attr.selected]="formation.domaine.id==domaine.id ? true : null">  {{domaine.libelle}} </option>
+                  </select>
+                  <div class="error"   *ngIf="undom.errors"  class="card-panel red accent-1" [hidden]="dom.valid || dom.pristine" [ngClass] = "'error'">
+                    <div *ngIf="undom.errors.required"> Domaine est obligatoire</div>
+                    <div class="select-dropdown"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--green" type="submit">
+                <span class="glyphicon glyphicon-ok-circle"></span> Submit
+              </button>
+            </div>
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+              </button>
+            </div>
+          </div>
+
         </form>
       </div>
     </div>

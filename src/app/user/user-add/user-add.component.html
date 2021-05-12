@@ -50,7 +50,8 @@
             <label for="eemail">Email </label>
             <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="form.email" name="eemail" #namee="ngModel">
             <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
-              <div *ngIf="uemail.errors.email">Email must be a valid email address</div>
+              <div *ngIf="uemail.errors.required">Email est obligatoire</div>
+              <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
               Email est obligatoire
             </div>
 
@@ -58,8 +59,8 @@
               <label for="password">Password</label>
               <input type="text"  class="input--style-2" id="password" placeholder="Password" required minlength="6" #unpass="ngModel" [(ngModel)]="form.password" name="password" #pass="ngModel">
               <div class="error"   *ngIf="unpass.errors"  class="card-panel red accent-1" [hidden]="pass.valid || pass.pristine" [ngClass] = "'error'">
-                <div *ngIf="unpass.errors.minlength">Minimum 6 lettres</div>
                 <div *ngIf="unpass.errors.required">Password est obligatoire</div>
+                <div *ngIf="unpass.errors.minlength">Minimum 6 lettres</div>
               </div>
             </div>
 
