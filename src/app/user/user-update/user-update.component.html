@@ -74,28 +74,50 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">UPDATE User</h2>
-        <form  (ngSubmit)="onSubmit()">
+        <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
           <div class="input-group">
-            <label for="email">Email</label>
-            <input  type="text" class="input--style-2" id="email" required [(ngModel)]="user.email" name="email">
+            <label for="username">Username </label>
+            <input type="text"  class="input--style-2" id="username" placeholder="Username" required minlength="2" #uname="ngModel" [(ngModel)]="user.username" name="username" #name="ngModel">
+            <div class="error"   *ngIf="uname.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
+              <div *ngIf="uname.errors.required">Username est obligatoire</div>
+              <div *ngIf="uname.errors.minlength">Minimum 2 lettres</div>
+            </div>
           </div>
 
           <div class="input-group">
-            <label for="username">username</label>
-            <input  type="text" class="input--style-2" id="username" required [(ngModel)]="user.username" name="username">
+            <label for="eemail">Email </label>
+            <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="user.email" name="eemail" #namee="ngModel">
+            <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
+              <div *ngIf="uemail.errors.email">Email must be a valid email address</div>
+              Email est obligatoire
+            </div>
+
+
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="text"  class="input--style-2" id="password" placeholder="Password" required minlength="6" #unpass="ngModel" [(ngModel)]="user.password" name="password" #pass="ngModel">
+              <div class="error"   *ngIf="unpass.errors"  class="card-panel red accent-1" [hidden]="pass.valid || pass.pristine" [ngClass] = "'error'">
+                <div *ngIf="unpass.errors.minlength">Minimum 6 lettres</div>
+                <div *ngIf="unpass.errors.required">Password est obligatoire</div>
+              </div>
+            </div>
+
+
+
+          <div class="text-center">
+
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--green" type="submit">
+                <span class="glyphicon glyphicon-ok-circle"></span> Submit
+              </button>
+            </div>
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+              </button>
+            </div>
           </div>
-
-
-          <div class="input-group">
-            <label for="password">Mot de passe</label>
-            <input  type="text" readonly class="input--style-2" id="password" required [(ngModel)]="user.password" name="password">
-          </div>
-
-
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">
-              <span class="glyphicon glyphicon-ok-circle"></span> Submit
-            </button>
           </div>
         </form>
       </div>

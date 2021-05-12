@@ -1,9 +1,10 @@
 import {Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms'
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import {UserService} from "src/app/service/user.service";
 import { AuthService } from 'src/app/_services/auth.service';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-add',
@@ -11,6 +12,14 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
+  isValidFormSubmitted = false;
+     userForm = new FormGroup({
+     username: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     email: new FormControl('', [Validators.required,Validators.email]),
+     password: new FormControl('', [Validators.required,Validators.minLength(6)])
+     });
+        submitted = false;
+
 
   form: any = {};
   isSuccessful = false;
@@ -24,6 +33,17 @@ export class UserAddComponent implements OnInit {
 
 
   onSubmit() {
+
+           this.isValidFormSubmitted = false;
+                        if (this.form.username.trim().length<2) {
+                           return ;
+                           }
+                            if (this.form.password.trim().length<6) {
+                                                    return;
+                                                    }
+
+          this.isValidFormSubmitted = true;
+          this.submitted = true;
     this.authService.register(this.form).subscribe(
       data => {
         console.log(data);
@@ -37,6 +57,11 @@ export class UserAddComponent implements OnInit {
       }
     );
 }
+onReset() {
+        this.submitted = false;
+        this.userForm.reset();
+    }
+
 //c
   gotoList() {
     this.router.navigate(['/userliste']);

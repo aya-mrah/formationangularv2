@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Pays } from 'src/app/model/pays';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaysService } from 'src/app/service/pays.service';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-pays-update',
@@ -10,8 +12,16 @@ import { PaysService } from 'src/app/service/pays.service';
 })
 export class PaysUpdateComponent implements OnInit {
 
+  isValidFormSubmitted = false;
+     paysForm = new FormGroup({
+     libelle: new FormControl('', [Validators.minLength(2)])
+     });
+
+
            id: number;
            pays: any;
+           submitted = false;
+
 
            constructor(private route: ActivatedRoute,private router: Router,
              private paysService: PaysService) { }
@@ -39,11 +49,22 @@ export class PaysUpdateComponent implements OnInit {
            //cc
 
            onSubmit() {
+
+           this.isValidFormSubmitted = false;
+                        if (this.pays.libelle.trim().length<2) {
+                           return ;
+                           }
+
+          this.isValidFormSubmitted = true;
              this.updatePays();
            }
- 
+
            gotoList() {
              this.router.navigate(['/paysliste']);
            }
+            onReset() {
+                            this.submitted = false;
+                            this.paysForm.reset();
+                        }
 
 }

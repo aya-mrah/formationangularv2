@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomaineService } from 'src/app/service/domaine.service';
 import { Domaine } from 'src/app/model/domaine';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-domaine-add',
@@ -9,14 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./domaine-add.component.css']
 })
 export class DomaineAddComponent implements OnInit {
-domaine: Domaine = new Domaine();
+
+     isValidFormSubmitted = false;
+     domaineForm = new FormGroup({
+     libelle: new FormControl('', [Validators.minLength(2)])
+     });
+
+       domaine: Domaine = new Domaine();
         submitted = false;
 
         constructor(private domaineService: DomaineService,
           private router: Router) { }
 
         ngOnInit() {
+
+
         }
+
+
+
 
         newDomaine(): void {
           this.submitted = false;
@@ -34,6 +46,13 @@ domaine: Domaine = new Domaine();
         }
 
         onSubmit() {
+
+           this.isValidFormSubmitted = false;
+                        if (this.domaine.libelle.trim().length<2) {
+                           return ;
+                           }
+
+          this.isValidFormSubmitted = true;
           this.submitted = true;
           this.save();
           this.gotoList();
@@ -42,6 +61,9 @@ domaine: Domaine = new Domaine();
         gotoList(){
           this.router.navigate(['domaineliste']);
         }
-
+       onReset() {
+        this.submitted = false;
+        this.domaineForm.reset();
+    }
 
 }

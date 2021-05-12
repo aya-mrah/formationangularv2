@@ -35,84 +35,52 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">Ajouter User</h2>
-        <form
-          *ngIf="!isSuccessful"
-          name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
-          #f="ngForm"
-          novalidate>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
 
           <div class="input-group">
-            <label for="username">Username</label>
-            <input  placeholder="Username"  id="nom"
-              type="text"
-              class="input--style-2"
-              name="username"
-              required
-              [(ngModel)]="form.username"
-              minlength="3"
-              maxlength="20"
-              #username="ngModel"/>
-            <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-              <div *ngIf="username.errors.required">Username is required</div>
-              <div *ngIf="username.errors.minlength">
-                Username must be at least 3 characters
-              </div>
-              <div *ngIf="username.errors.maxlength">
-                Username must be at most 20 characters
-              </div>
-            </div>
-          </div>
-          <div class="input-group">
-            <label for="email">Email</label>
-            <input placeholder="Email@gmail.com"  id="email"
-              type="email"
-              class="input--style-2"
-              name="email"
-              required
-              [(ngModel)]="form.email"
-              email
-              #email="ngModel"/>
-            <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-              <div *ngIf="email.errors.required">Email is required</div>
-              <div *ngIf="email.errors.email">
-                Email must be a valid email address
-              </div>
+            <label for="username">Username </label>
+            <input type="text"  class="input--style-2" id="username" placeholder="Username" required minlength="2" #uname="ngModel" [(ngModel)]="form.username" name="username" #name="ngModel">
+            <div class="error"   *ngIf="uname.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
+              <div *ngIf="uname.errors.required">Username est obligatoire</div>
+              <div *ngIf="uname.errors.minlength">Minimum 2 lettres</div>
             </div>
           </div>
 
           <div class="input-group">
-            <label for="password">Password</label>
-            <input placeholder="......"  id="password"
-              type="password"
-              class="form-control"
-              name="password"
-              required
-              [(ngModel)]="form.password"
-              minlength="6"
-              #password="ngModel"
-            />
-            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
-              <div *ngIf="password.errors.required">Password is required</div>
-              <div *ngIf="password.errors.minlength">
-                Password must be at least 6 characters
+            <label for="eemail">Email </label>
+            <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="form.email" name="eemail" #namee="ngModel">
+            <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
+              <div *ngIf="uemail.errors.email">Email must be a valid email address</div>
+              Email est obligatoire
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="text"  class="input--style-2" id="password" placeholder="Password" required minlength="6" #unpass="ngModel" [(ngModel)]="form.password" name="password" #pass="ngModel">
+              <div class="error"   *ngIf="unpass.errors"  class="card-panel red accent-1" [hidden]="pass.valid || pass.pristine" [ngClass] = "'error'">
+                <div *ngIf="unpass.errors.minlength">Minimum 6 lettres</div>
+                <div *ngIf="unpass.errors.required">Password est obligatoire</div>
               </div>
             </div>
-          </div>
 
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green">
-              <span class="glyphicon glyphicon-ok-circle"></span> Add user</button>
-          </div>
 
-          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Signup failed!<br />{{ errorMessage }}
+
+
+          <div class="text-center">
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--green " type="submit">
+                <span class="glyphicon glyphicon-ok-circle"></span> Submit
+              </button>
+            </div>
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+              </button>
+            </div>
+          </div>
           </div>
         </form>
 
-        <div class="alert alert-success" *ngIf="isSuccessful">
-          Your registration is successful!
-        </div>
 
 
       </div>

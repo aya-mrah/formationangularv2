@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrganismeService } from 'src/app/service/organisme.service';
 import { Organisme } from 'src/app/model/organisme';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-organisme-add',
   templateUrl: './organisme-add.component.html',
@@ -9,6 +11,11 @@ import { Router } from '@angular/router';
 })
 export class OrganismeAddComponent implements OnInit {
 
+
+     isValidFormSubmitted = false;
+       organismeForm = new FormGroup({
+       libelle: new FormControl('', [Validators.minLength(2)])
+       });
 
    organisme: Organisme = new Organisme();
     submitted = false;
@@ -35,11 +42,26 @@ export class OrganismeAddComponent implements OnInit {
     }
 
     onSubmit() {
-      this.submitted = true;
-      this.save();
+
+
+           this.isValidFormSubmitted = false;
+                        if (this.organisme.libelle.trim().length<2) {
+                           return ;
+                           }
+
+          this.isValidFormSubmitted = true;
+          this.submitted = true;
+          this.save();
+          this.gotoList();
+
     }
 
     gotoList() {
       this.router.navigate(['/organismeliste']);
     }
+
+     onReset() {
+            this.submitted = false;
+            this.organismeForm.reset();
+        }
 }

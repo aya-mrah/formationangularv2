@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProfilService } from 'src/app/service/profil.service';
 import { Profil } from 'src/app/model/profil';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-profil-add',
   templateUrl: './profil-add.component.html',
@@ -9,6 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ProfilAddComponent implements OnInit {
 
+
+     isValidFormSubmitted = false;
+     profilForm = new FormGroup({
+     libelle: new FormControl('', [Validators.minLength(2)])
+     });
 
   profil: Profil = new Profil();
       submitted = false;
@@ -35,12 +42,25 @@ export class ProfilAddComponent implements OnInit {
       }
 
       onSubmit() {
-        this.submitted = true;
-        this.save();
+
+       this.isValidFormSubmitted = false;
+                              if (this.profil.libelle.trim().length<2) {
+                                 return ;
+                                 }
+
+                this.isValidFormSubmitted = true;
+                this.submitted = true;
+                this.save();
+                this.gotoList();
+
       }
 
       gotoList() {
         this.router.navigate(['profileliste']);
       }
+      onReset() {
+              this.submitted = false;
+              this.profilForm.reset();
+          }
 
 }

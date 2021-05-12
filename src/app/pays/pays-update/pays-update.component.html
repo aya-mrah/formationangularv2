@@ -61,16 +61,33 @@
       <div class="card-heading"></div>
       <div class="card-body" >
         <h2 class="title">UPDATE ORGANISME</h2>
-        <form  (ngSubmit)="onSubmit()">
-          <div class="input-group">
-            <input class="input--style-2" type="text" placeholder="Organisme" name="name" id="libelle" required [(ngModel)]="pays.libelle">
+        <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
 
+
+          <div class="input-group">
+            <label for="libelle">Libelle </label>
+            <input type="text"  class="input--style-2" id="libelle" placeholder="Pays" required minlength="2" #uname="ngModel" [(ngModel)]="pays.libelle" name="libelle" #name="ngModel">
+            <div class="error"   *ngIf="uname.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
+              <div *ngIf="uname.errors.minlength">
+                Minimum 2 lettres
+              </div>
+              Libelle est obligatoire
+            </div>
           </div>
-          <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">
-              <span class="glyphicon glyphicon-ok-circle"></span> Submit
-            </button>
+          <div class="text-center">
+
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--green" type="submit">
+                <span class="glyphicon glyphicon-ok-circle"></span> Submit
+              </button>
+            </div>
+            <div class="p-t-30">
+              <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+              </button>
+            </div>
           </div>
+
         </form>
       </div>
     </div>

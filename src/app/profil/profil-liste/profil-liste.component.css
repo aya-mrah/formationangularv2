@@ -28,4 +28,6 @@ color: CadetBlue;
 #text3{
 color: CadetBlue;
 }
-
+.mat-elevation-z8{
+  width: 100%;
+}

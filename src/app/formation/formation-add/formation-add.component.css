@@ -447,6 +447,7 @@ input {
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 37px;
+  color:##254452;
 }
 
 /* ==========================================================================
@@ -457,7 +458,7 @@ input {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  background: #fff;
+  background: #E3E8E7;
 }
 
 .card-2 {
