@@ -19,7 +19,7 @@ isValidFormSubmitted = false;
      participantForm = new FormGroup({
      nom: new FormControl('', [Validators.required,Validators.minLength(2)]),
      prenom: new FormControl('', [Validators.required,Validators.minLength(2)]),
-     email: new FormControl('', [Validators.required,Validators.email]),
+     mail: new FormControl('', [Validators.required,Validators.email]),
      tel: new FormControl('', [Validators.required,Validators.min(8)]),
      type: new FormControl('', [Validators.required]),
      organismee: new FormControl('', [Validators.required]),

@@ -1,3 +1,45 @@
+.btn {
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 25px;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  font-size: 12px;
+  font-weight: 700;
+}
+.btn--radius {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.btn--gray {
+  background: #808080;
+}
+.btn--green {
+  background: #57b846;
+}
+.ng-valid[required], .ng-valid.required {
+
+border-left: 5px solid green;
+
+}
+
+.ng-invalid:not(form) {
+
+border-left: 5px solid red;
+
+}
+.error{
+color:red;
+}
+.font-robo {
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+}
 /* @extend display-flex; */
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
   display: flex;

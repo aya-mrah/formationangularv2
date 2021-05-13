@@ -9,13 +9,14 @@ import {FormationService} from "src/app/service/formation.service";
 import {OrganismeService} from "src/app/service/organisme.service";
 import {FormateurService} from "src/app/service/formateur.service";
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { Participant } from 'src/app/model/Participant';
 import { ParticipantService } from 'src/app/service/participant.service';
 import { map } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-session-update',
   templateUrl: './session-update.component.html',
@@ -23,8 +24,18 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class SessionUpdateComponent implements OnInit {
 //
-
-
+ isValidFormSubmitted = false;
+     sessionForm = new FormGroup({
+     date_deb: new FormControl('', [Validators.required]),
+     date_fin: new FormControl('', [Validators.required]),
+     nbparticipant: new FormControl('', [Validators.required]),
+     lieu: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     participantss: new FormControl('', [Validators.required]),
+     formationss: new FormControl('', [Validators.required]),
+     organismeee: new FormControl('', [Validators.required]),
+     formateurss: new FormControl('', [Validators.required])
+     });
+  submitted = false;
 
 visible = true;
 selectable = true;
@@ -113,8 +124,13 @@ participantInput!: ElementRef<HTMLInputElement>;
   }
 
   onSubmit() {
+    this.isValidFormSubmitted = true;
     this.updateSession();
   }
+    onReset() {
+                       this.submitted = false;
+                       this.sessionForm.reset();
+                   }
 
   gotoList() {
     this.router.navigate(['/sessionliste']);

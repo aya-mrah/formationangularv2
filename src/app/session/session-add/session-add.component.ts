@@ -12,12 +12,13 @@ import {FormateurService} from "src/app//service/formateur.service";
 import {Pays} from "src/app//model/pays";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
-import {FormControl} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import { Participant } from 'src/app/model/Participant';
 import { ParticipantService } from 'src/app/service/participant.service';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-session-add',
@@ -25,6 +26,21 @@ import { ParticipantService } from 'src/app/service/participant.service';
   styleUrls: ['./session-add.component.css']
 })
 export class SessionAddComponent implements OnInit {
+ isValidFormSubmitted = false;
+     sessionForm = new FormGroup({
+     date_deb: new FormControl('', [Validators.required]),
+     date_fin: new FormControl('', [Validators.required]),
+     nbparticipant: new FormControl('', [Validators.required]),
+     lieu: new FormControl('', [Validators.required,Validators.minLength(2)]),
+     participantss: new FormControl('', [Validators.required]),
+     formationss: new FormControl('', [Validators.required]),
+     organismeee: new FormControl('', [Validators.required]),
+     formateurss: new FormControl('', [Validators.required])
+     });
+
+
+
+
 
   //-----AutoCompleteexemple--------
   visible = true;
@@ -39,7 +55,7 @@ export class SessionAddComponent implements OnInit {
     {id:2,mail:"aymen@gmail.com",nom:"aymen",organisme:null,pays:null,prenom:"rahmani",profil:null,tel:12,type:""},
     {id:3,mail:"hamdi@gmail.com",nom:"hamdi",organisme:null,pays:null,prenom:"rahmani",profil:null,tel:12,type:""}
   ]
- 
+
   @ViewChild('participantInput')participantInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete ;
   //-------------
@@ -62,7 +78,7 @@ session: Session = new Session();
               private formateurService: FormateurService,
               private participantService: ParticipantService,
               private router: Router) {
-                
+
                 let resp = this.participantService.getParticipantsList()
        resp.subscribe(report =>this.allParticipants = report as Participant[])
        this.pariticpantCtrl.setValue(null);
@@ -97,14 +113,24 @@ session: Session = new Session();
     this.currentFormateur = formateur;
   }
   onSubmit() {
-    this.submitted = true;
-    this.save();
+    if (this.session.lieu.trim().length<2) {
+                                return ;
+                                }
+
+                   this.isValidFormSubmitted = true;
+                   this.submitted = true;
+                   this.save();
+                   this.gotoList();
+
   }
 
   gotoList() {
     this.router.navigate(['/sessionliste']);
   }
-
+ onReset() {
+               this.submitted = false;
+               this.sessionForm.reset();
+           }
   ngOnInit(): void {
     this.organismeService.getOrganismesList().subscribe(data => {
       this.organismes = data;

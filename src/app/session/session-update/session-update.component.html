@@ -46,34 +46,49 @@
           <div class="card-heading"></div>
           <div class="card-body" >
             <h2 class="title">UPDATE Session</h2>
-            <form  (ngSubmit)="onSubmit()">
-
+            <form  (ngSubmit)="onSubmit()" #myForm="ngForm" >
               <div class="input-group">
                 <label for="date_deb">Date début</label>
-                <input type="date"  class="input--style-2" id="date_deb" required [(ngModel)]="session.date_deb" name="date_deb">
+                <input type="date"  class="input--style-2" id="date_deb" placeholder="Date Début" required  #undeb="ngModel" [(ngModel)]="session.date_deb" name="date_deb" #deb="ngModel">
+                <div class="error"   *ngIf="undeb.errors"  class="card-panel red accent-1" [hidden]="deb.valid || deb.pristine" [ngClass] = "'error'">
+                  <div *ngIf="undeb.errors.required">Date Début est obligatoire</div>
+                </div>
               </div>
               <div class="input-group">
                 <label for="date_fin">Date Fin</label>
-                <input type="date"    class="input--style-2" id="date_fin" required [(ngModel)]="session.date_fin" name="date_fin">
+                <input type="date"  class="input--style-2" id="date_fin" placeholder="Date Fin" required  #unfin="ngModel" [(ngModel)]="session.date_fin" name="date_fin" #fin="ngModel">
+                <div class="error"   *ngIf="unfin.errors"  class="card-panel red accent-1" [hidden]="fin.valid || fin.pristine" [ngClass] = "'error'">
+                  <div *ngIf="unfin.errors.required">Date Fin est obligatoire</div>
+                </div>
               </div>
               <div class="input-group">
-                <label for="lieu">Lieu</label>
-                <input type="text" class="input--style-2" id="lieu" required [(ngModel)]="session.lieu" name="lieu">
+                <label for="nbparticipant">Nombre participants</label>
+                <input type="number"  class="input--style-2" id="nbparticipant" placeholder="Nb Participant" required  #unnb="ngModel" [(ngModel)]="session.nbparticipant" name="nbparticipant" #nb="ngModel">
+                <div class="error"   *ngIf="unnb.errors"  class="card-panel red accent-1" [hidden]="nb.valid || nb.pristine" [ngClass] = "'error'">
+                  <div *ngIf="unnb.errors.required">Nb participants est obligatoire</div>
+                </div>
               </div>
               <div class="input-group">
-                <label for="nbparticipant"> nb participant</label>
-                <input type="text" class="input--style-2" id="nbparticipant" required [(ngModel)]="session.nbparticipant" name="nbparticipant">
+                <label for="lieu">Lieu </label>
+                <input type="text"  class="input--style-2" id="lieu" placeholder="Lieu" required minlength="2" #unlieu="ngModel" [(ngModel)]="session.lieu" name="lieu" #lieu="ngModel">
+                <div class="error"   *ngIf="unlieu.errors"  class="card-panel red accent-1" [hidden]="lieu.valid || lieu.pristine" [ngClass] = "'error'">
+                  <div *ngIf="unlieu.errors.required">Lieu est obligatoire</div>
+                  <div *ngIf="unlieu.errors.minlength">Minimum 2 lettres</div>
+                </div>
               </div>
               <div class="row-space">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Formation</label>
-                      <select name="formation" [(ngModel)]="session.formation"  class=" form-select browser-default custom-select">
-                        <option hidden [ngValue]="session.formation"  [attr.selected]="true" >  {{session.formation.titre}} </option>
+                      <select name="formation" required #unfor="ngModel" [(ngModel)]="session.formation"  #for="ngModel" class="form-select browser-default custom-select ">
+                        <option hidden [ngValue]="session.formation"  [attr.selected]="true">  {{session.formation.titre}} </option>
                         <option *ngFor="let formation of formations"  [ngValue]="formation"  [attr.selected]="session.formation.id==formation.id ? true : null">   {{session.formation.titre}}</option>
                       </select>
-                      <div class="select-dropdown"></div>
+                      <div class="error"   *ngIf="unfor.errors"  class="card-panel red accent-1" [hidden]="for.valid || for.pristine" [ngClass] = "'error'">
+                        <div *ngIf="unfor.errors.required"> Formation est obligatoire</div>
+                        <div class="select-dropdown"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -83,11 +98,14 @@
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Organisme</label>
-                      <select name="organisme" [(ngModel)]="session.organisme"  class=" form-select browser-default custom-select">
-                        <option hidden [ngValue]="session.organisme"  [attr.selected]="true" >  {{session.organisme.libelle}} </option>
+                      <select name="organisme" required #unorg="ngModel" [(ngModel)]="session.organisme"  #org="ngModel" class="form-select browser-default custom-select ">
+                        <option hidden [ngValue]="session.organisme"  [attr.selected]="true">  {{session.organisme.libelle}} </option>
                         <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="session.organisme.id==organisme.id ? true : null"> {{organisme.libelle}}  </option>
                       </select>
-                      <div class="select-dropdown"></div>
+                      <div class="error"   *ngIf="unorg.errors"  class="card-panel red accent-1" [hidden]="org.valid || org.pristine" [ngClass] = "'error'">
+                        <div *ngIf="unorg.errors.required"> Organisme est obligatoire</div>
+                        <div class="select-dropdown"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -97,24 +115,24 @@
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Formateur</label>
-                      <select name="formateur" [(ngModel)]="session.formateur"  class=" form-select browser-default custom-select">
-                        <option hidden [ngValue]="session.formateur"  [attr.selected]="true" >  {{session.formateur.prenom}} {{session.formateur.nom}} </option>
+                      <select name="formateur" required #unfr="ngModel" [(ngModel)]="session.formateur"  #fr="ngModel" class="form-select browser-default custom-select ">
+                        <option hidden [ngValue]="session.formateur"  [attr.selected]="true">  {{session.formateur.prenom}} {{session.formateur.nom}}</option>
                         <option *ngFor="let formateur of formateurs"  [ngValue]="formateur"  [attr.selected]="session.formateur.id==formateur.id ? true : null"> {{formateur.prenom}} {{formateur.nom}} </option>
                       </select>
-                      <div class="select-dropdown"></div>
+                      <div class="error"   *ngIf="unfr.errors"  class="card-panel red accent-1" [hidden]="fr.valid || fr.pristine" [ngClass] = "'error'">
+                        <div *ngIf="unfr.errors.required"> Formateur est obligatoire</div>
+                        <div class="select-dropdown"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-
-
-
               <div class="row-space">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
-                      <label for="">Participants</label>
+                      <label >Participants</label>
                       <mat-form-field class="example-chip-list" >
                 <mat-label>Participants</mat-label>
                 <!--List Autocomplete de participant-->
@@ -151,13 +169,18 @@
 
 
 
+              <div class="text-center">
 
-
-
-              <div class="p-t-30">
-                <button class="btn btn--radius btn--green" type="submit">
-                  <span class="glyphicon glyphicon-ok-circle"></span> Submit
-                </button>
+                <div class="p-t-30">
+                  <button class="btn btn--radius btn--green" type="submit">
+                    <span class="glyphicon glyphicon-ok-circle"></span> Submit
+                  </button>
+                </div>
+                <div class="p-t-30">
+                  <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
+                    <span class="glyphicon glyphicon-ok-circle"></span> Cancel
+                  </button>
+                </div>
               </div>
             </form>
           </div>

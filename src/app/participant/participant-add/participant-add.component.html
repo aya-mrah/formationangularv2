@@ -52,8 +52,8 @@
             </div>
           </div>
           <div class="input-group">
-            <label for="eemail">Email </label>
-            <input type="text"  class="input--style-2" id="eemail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="participant.mail" name="eemail" #namee="ngModel">
+            <label for="mail">Email </label>
+            <input type="text"  class="input--style-2" id="mail" placeholder="Email" required #uemail="ngModel" [(ngModel)]="participant.mail" name="mail" #namee="ngModel">
             <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
               <div *ngIf="uemail.errors.required">Email est obligatoire</div>
               <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
