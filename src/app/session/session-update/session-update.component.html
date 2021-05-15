@@ -49,14 +49,14 @@
             <form  (ngSubmit)="onSubmit()" #myForm="ngForm" >
               <div class="input-group">
                 <label for="date_deb">Date début</label>
-                <input type="date"  class="input--style-2" id="date_deb" placeholder="Date Début" required  #undeb="ngModel" [(ngModel)]="session.date_deb" name="date_deb" #deb="ngModel">
+                <input type="date"  class="input--style-2" id="date_deb" placeholder="Date Début" required  #undeb="ngModel" [ngModel]="session.date_deb| date:'y-MM-dd'" name="date_deb" (ngModelChange)="session.date_deb = $event" #deb="ngModel">
                 <div class="error"   *ngIf="undeb.errors"  class="card-panel red accent-1" [hidden]="deb.valid || deb.pristine" [ngClass] = "'error'">
                   <div *ngIf="undeb.errors.required">Date Début est obligatoire</div>
                 </div>
               </div>
               <div class="input-group">
                 <label for="date_fin">Date Fin</label>
-                <input type="date"  class="input--style-2" id="date_fin" placeholder="Date Fin" required  #unfin="ngModel" [(ngModel)]="session.date_fin" name="date_fin" #fin="ngModel">
+                <input type="date"  class="input--style-2" id="date_fin" placeholder="Date Fin" required  #unfin="ngModel" [ngModel]="session.date_fin | date:'y-MM-dd'" (ngModelChange)="session.date_fin = $event" name="date_fin" #fin="ngModel">
                 <div class="error"   *ngIf="unfin.errors"  class="card-panel red accent-1" [hidden]="fin.valid || fin.pristine" [ngClass] = "'error'">
                   <div *ngIf="unfin.errors.required">Date Fin est obligatoire</div>
                 </div>

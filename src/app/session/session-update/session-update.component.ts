@@ -23,7 +23,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./session-update.component.css']
 })
 export class SessionUpdateComponent implements OnInit {
-//
+
  isValidFormSubmitted = false;
      sessionForm = new FormGroup({
      date_deb: new FormControl('', [Validators.required]),
@@ -112,6 +112,14 @@ participantInput!: ElementRef<HTMLInputElement>;
       this.formations = data;
     });
 
+  }
+
+
+  parseDate(dateString: string): Date {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
   }
 
   updateSession() {
