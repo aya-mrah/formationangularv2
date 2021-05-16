@@ -3,6 +3,7 @@ import { DomaineService } from 'src/app/service/domaine.service';
 import { Domaine } from 'src/app/model/domaine';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-domaine-add',
@@ -20,7 +21,7 @@ export class DomaineAddComponent implements OnInit {
         submitted = false;
 
         constructor(private domaineService: DomaineService,
-          private router: Router) { }
+          private router: Router,private _snackBar: MatSnackBar) { }
 
         ngOnInit() {
 
@@ -65,5 +66,9 @@ export class DomaineAddComponent implements OnInit {
         this.submitted = false;
         this.domaineForm.reset();
     }
-
+    openSnackBar() {
+      this._snackBar.open("Domaine Added !!!", "Ok"
+       
+      );
+    }
 }

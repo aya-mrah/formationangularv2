@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild ,OnInit} from '@angular/core';
 import {FormationService} from "src/app/service/formation.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {Session} from "src/app//model/session";
 import {SessionService} from "src/app//service/session.service";
 import {Profil} from "src/app//model/profil";
@@ -18,6 +18,7 @@ import {Observable} from 'rxjs';
 import { Participant } from 'src/app/model/Participant';
 import { ParticipantService } from 'src/app/service/participant.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -77,7 +78,7 @@ session: Session = new Session();
               private organismeService: OrganismeService,
               private formateurService: FormateurService,
               private participantService: ParticipantService,
-              private router: Router) {
+              private router: Router,private _snackBar: MatSnackBar) {
 
                 let resp = this.participantService.getParticipantsList()
        resp.subscribe(report =>this.allParticipants = report as Participant[])
@@ -188,5 +189,10 @@ session: Session = new Session();
     const filterValue = value.nom.toLowerCase();
 
     return this.allParticipants.filter(Participant => Participant.nom.toLowerCase().indexOf(filterValue) === 0);
+  }
+  openSnackBar() {
+    this._snackBar.open("Session Added !!!", "Ok"
+     
+    );
   }
 }

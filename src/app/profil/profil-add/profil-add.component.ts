@@ -3,6 +3,8 @@ import { ProfilService } from 'src/app/service/profil.service';
 import { Profil } from 'src/app/model/profil';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-profil-add',
@@ -21,7 +23,7 @@ export class ProfilAddComponent implements OnInit {
       submitted = false;
 
       constructor(private profilService: ProfilService,
-        private router: Router) { }
+        private router: Router ,private _snackBar: MatSnackBar) { }
 
       ngOnInit() {
       }
@@ -63,4 +65,9 @@ export class ProfilAddComponent implements OnInit {
               this.profilForm.reset();
           }
 
+          openSnackBar() {
+            this._snackBar.open("Profil Added !!!", "Ok"
+             
+            );
+          }
 }

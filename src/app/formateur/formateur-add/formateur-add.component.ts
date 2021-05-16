@@ -5,6 +5,7 @@ import { Organisme } from 'src/app/model/organisme';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {OrganismeService} from 'src/app/service/organisme.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-formateur-add',
   templateUrl: './formateur-add.component.html',
@@ -28,7 +29,9 @@ export class FormateurAddComponent implements OnInit {
    organismes: any;
    currentOrganisme: Organisme;
 
-   constructor(private formateurService: FormateurService,  private organismeService: OrganismeService, private router: Router) {}
+   constructor(private formateurService: FormateurService,
+      private organismeService: OrganismeService,
+       private router: Router,private _snackBar: MatSnackBar) {}
 
    newFormateur(): void {
    this.submitted = false;
@@ -82,5 +85,9 @@ export class FormateurAddComponent implements OnInit {
                   this.submitted = false;
                   this.formateurForm.reset();
               }
-
+              openSnackBar() {
+                this._snackBar.open("Formateur Added !!!", "Ok"
+                 
+                );
+              }
  }

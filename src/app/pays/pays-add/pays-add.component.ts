@@ -4,6 +4,7 @@ import { Pays } from 'src/app/model/pays';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pays-add',
@@ -25,7 +26,7 @@ export class PaysAddComponent implements OnInit {
         submitted = false;
 
         constructor(private paysService: PaysService,
-          private router: Router ,private httpClient : HttpClient) { }
+          private router: Router ,private httpClient : HttpClient,private _snackBar: MatSnackBar) { }
 
         ngOnInit() {
         }
@@ -88,6 +89,12 @@ this.httpClient.post('http://localhost:8090/addpays',uploadPays).subscribe(
   console.log('erreur '+err);
   }
   )
+  }
+
+  openSnackBar() {
+    this._snackBar.open("Pays Added !!!", "Ok"
+     
+    );
   }
 }
 

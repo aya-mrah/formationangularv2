@@ -3,6 +3,7 @@ import { OrganismeService } from 'src/app/service/organisme.service';
 import { Organisme } from 'src/app/model/organisme';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-organisme-add',
@@ -21,7 +22,7 @@ export class OrganismeAddComponent implements OnInit {
     submitted = false;
 
     constructor(private organismeService: OrganismeService,
-      private router: Router) { }
+      private router: Router,private _snackBar: MatSnackBar) { }
 
     ngOnInit() {
     }
@@ -63,5 +64,11 @@ export class OrganismeAddComponent implements OnInit {
      onReset() {
             this.submitted = false;
             this.organismeForm.reset();
+        }
+
+        openSnackBar() {
+          this._snackBar.open("Organisme Added !!!", "Ok"
+           
+          );
         }
 }

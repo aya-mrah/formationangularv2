@@ -28,9 +28,10 @@
 -->
 
 
-<h2 class="text-center">Liste des Pays</h2>
+
 <div class="container-fluid" >
-  <button mat-icon-button  aria-label="Example icon button with a home icon" id="butadd" (click)="addPays()">
+  <h2 class="text-center">Liste des Pays</h2>
+  <button mat-icon-button  aria-label="Example icon button with a home icon" matTooltip="Ajouter Pays" id="butadd" (click)="addPays()">
     <mat-icon>add</mat-icon>
   </button>
   <mat-form-field color="black">
@@ -55,7 +56,10 @@
       <th mat-header-cell *matHeaderCellDef  id="text2" class="font-weight-bold" style="text-align:center" mat-sort-header><mat-icon> notes</mat-icon>&nbsp; Libelle </th>
       <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.libelle}} </td>
     </ng-container>
-
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef  id="text2" class="font-weight-bold" style="text-align:center" mat-sort-header><mat-icon> notes</mat-icon>&nbsp; Libelle </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"><img src="data:image/jpeg;base64,{{element.picByte}}" width="70px" height="40px" style="margin: 10px;"/> </td>
+    </ng-container>
     <ng-container matColumnDef="star" stickyEnd >
       <th mat-header-cell *matHeaderCellDef  id="text3" class="font-weight-bold" style="text-align:center"><mat-icon>build</mat-icon>&nbsp;Actions</th>
       <td mat-cell *matCellDef="let element" style="text-align:center">

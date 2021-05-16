@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {UserService} from "src/app/service/user.service";
 import { AuthService } from 'src/app/_services/auth.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class UserAddComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router:Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -69,5 +70,9 @@ onReset() {
     this.router.navigate(['/userliste']);
   }
 
-
+  openSnackBar() {
+    this._snackBar.open("User Added !!!", "Ok"
+     
+    );
+  }
 }

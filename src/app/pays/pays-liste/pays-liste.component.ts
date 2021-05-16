@@ -14,6 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface IPays {
   id: number;
   libelle: string;
+  photo:any
 
 }
 
@@ -24,7 +25,7 @@ export interface IPays {
 })
 export class PaysListeComponent implements OnInit {
   payss: IPays[];
-  displayedColumns:string[] = ['id', 'libelle','star'];
+  displayedColumns:string[] = ['id', 'libelle','photo','star'];
   dataSource :MatTableDataSource<IPays>
 
 

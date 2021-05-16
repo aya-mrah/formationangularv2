@@ -7,6 +7,7 @@ import {Pays} from "src/app/model/pays";
 import {Domaine} from "src/app/model/domaine";
 import {DomaineService} from "src/app/service/domaine.service";
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class FormationAddComponent implements OnInit {
 
        constructor(private formationService: FormationService,
                    private domaineService: DomaineService,
-                   private router: Router) { }
+                   private router: Router ,private _snackBar: MatSnackBar) { }
 
 
        save() {
@@ -73,4 +74,11 @@ export class FormationAddComponent implements OnInit {
                this.submitted = false;
                this.formationForm.reset();
            }
+
+
+           openSnackBar() {
+            this._snackBar.open("Formation Added !!!", "Ok"
+             
+            );
+          }
      }

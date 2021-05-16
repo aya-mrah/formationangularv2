@@ -9,6 +9,7 @@ import {Pays} from "src/app//model/pays";
 import {Profil} from "src/app//model/profil";
 import {ProfilService} from "src/app//service/profil.service";
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 interface Food {
@@ -51,7 +52,7 @@ participant: Participant = new Participant();
               private paysService: PaysService,
               private profilService: ProfilService,
               private organismeService: OrganismeService,
-              private router: Router) { }
+              private router: Router,private _snackBar: MatSnackBar) { }
 
   save() {
     this.participant.type="International"
@@ -113,6 +114,10 @@ participant: Participant = new Participant();
       this.organismes = data;
     });
   }
-
+  openSnackBar() {
+    this._snackBar.open("Participant Added !!!", "Ok"
+     
+    );
+  }
 
 }
