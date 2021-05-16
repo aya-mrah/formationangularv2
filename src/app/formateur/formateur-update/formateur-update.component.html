@@ -77,7 +77,7 @@
                 <div class="input-group">
                   <div class="rs-select2 js-select-simple select--no-search">
                     <label >Type</label>
-                    <select name="select" required #untype="ngModel" [(ngModel)]="formateur.type" #type="ngModel" class="form-select browser-default custom-select ">
+                    <select name="select" required #untype="ngModel" [(ngModel)]="formateur.type" #type="ngModel" class="form-select browser-default custom-select input--style-2 ">
                       <option hidden >  {{formateur.type}} </option>
                       <option *ngFor="let type of types"  [ngValue]="type"  [attr.selected]="formateur.type==type ? true : null">  {{type}} </option>
                     </select>
@@ -95,7 +95,7 @@
                 <div class="input-group">
                   <div class="rs-select2 js-select-simple select--no-search">
                     <label >Organisme</label>
-                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="formateur.organisme"  #org="ngModel" class="form-select browser-default custom-select ">
+                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="formateur.organisme"  #org="ngModel" class="form-select browser-default custom-select input--style-2 ">
                       <option  hidden [ngValue]="formateur.organisme" [attr.selected]="true">{{formateur.organisme.libelle}}</option>
                       <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="formateur.organisme.id==organisme.id ? true : null">  {{organisme.libelle}} </option>
                     </select>

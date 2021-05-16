@@ -61,7 +61,7 @@
           <div class="input-group">
             <div class="rs-select2 js-select-simple select--no-search">
             <label >Type</label>
-            <select name="select" required #untype="ngModel" [(ngModel)]="formation.type_formation" #type="ngModel" class="form-select browser-default custom-select ">
+            <select name="select" required #untype="ngModel" [(ngModel)]="formation.type_formation" #type="ngModel" class="form-select browser-default custom-select input--style-2 ">
               <option [ngValue]="undefined">Type</option>
               <option value="Nationale">  Nationale </option>
               <option value="Internationale">  Internationale </option>
@@ -110,7 +110,7 @@
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label >Domaine</label>
-                  <select name="domaine" required #undom="ngModel" [(ngModel)]="formation.domaine" (ngModelChange)="setNewDomaine($event)" #dom="ngModel" class="form-select browser-default custom-select ">
+                  <select name="domaine" required #undom="ngModel" [(ngModel)]="formation.domaine" (ngModelChange)="setNewDomaine($event)" #dom="ngModel" class="form-select browser-default custom-select input--style-2 ">
                     <option [ngValue]="undefined">Domaine</option>
                     <option *ngFor="let domaine of domaines"  [ngValue]="domaine" >  {{domaine.libelle}} </option>
                   </select>
@@ -125,13 +125,13 @@
 
 
 
-          <div class="text-center">
-            <div class="p-t-30">
+          <div class="form-group row">
+            <div class="col">
               <button class="btn btn--radius btn--green " type="submit">
                 <span class="glyphicon glyphicon-ok-circle"></span> Submit
               </button>
             </div>
-            <div class="p-t-30">
+            <div class="col">
               <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                 <span class="glyphicon glyphicon-ok-circle"></span> Cancel
               </button>

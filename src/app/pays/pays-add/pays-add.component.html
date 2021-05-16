@@ -51,21 +51,19 @@
 
           <div class="input-group">
             <label >Photo </label>
-            <input type="file"  class="input--style-2"  (change)="onFileChanged($event)"    id="photo"  required  #unphoto="ngModel" [(ngModel)]="pays.photo" accept=".xls,.xlsx" name="file" #name="ngModel">
-            <div class="error"   *ngIf="unphoto.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
-            </div>
-            <div *ngIf="unphoto.errors.required">Photo est obligatoire</div>
+            <input type="file"  class="input--style-2"  (change)="onFileChanged($event)"    id="photo"  >
+
           </div>
 
 
 
-          <div class="text-center">
-            <div class="p-t-30">
+          <div class="form-group row">
+            <div class="col">
               <button class="btn btn--radius btn--green " type="submit">
                 <span class="glyphicon glyphicon-ok-circle"></span> Submit
               </button>
             </div>
-            <div class="p-t-30">
+            <div class="col">
               <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                 <span class="glyphicon glyphicon-ok-circle"></span> Cancel
               </button>

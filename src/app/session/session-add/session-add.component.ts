@@ -113,6 +113,7 @@ session: Session = new Session();
     this.currentFormateur = formateur;
   }
   onSubmit() {
+             this.isValidFormSubmitted = false;
     if (this.session.lieu.trim().length<2) {
                                 return ;
                                 }

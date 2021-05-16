@@ -63,7 +63,7 @@ export class FormationUpdateComponent implements OnInit {
     onSubmit() {
 
 
-              this.isValidFormSubmitted = true;
+             this.isValidFormSubmitted = true;
              this.updateFormation();
     }
 

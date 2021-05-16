@@ -47,9 +47,11 @@ export class FormationAddComponent implements OnInit {
            error => console.log(error));
        }
        onSubmit() {
-       if (this.formationForm.invalid) {
-                   return;
-               }
+
+           this.isValidFormSubmitted = false;
+                        if (this.formation.titre.trim().length<2) {
+                           return ;
+                           }
                  this.isValidFormSubmitted = true;
                  this.submitted = true;
                  this.save();

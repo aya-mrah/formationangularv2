@@ -31,7 +31,7 @@ export class ParticipantAddComponent implements OnInit {
      tel: new FormControl('', [Validators.required,Validators.min(8)]),
      type: new FormControl('', [Validators.required]),
      organismee: new FormControl('', [Validators.required]),
-     paysee: new FormControl('', [Validators.required]),
+     payse: new FormControl('', [Validators.required]),
      profilee: new FormControl('', [Validators.required])
      });
 
@@ -80,12 +80,7 @@ participant: Participant = new Participant();
     }
 
   onSubmit() {
-   this.isValidFormSubmitted = false;
-                          if (this.participant.nom.trim().length<2) {
-                             return ;
-                             }
-                              if (this.participant.prenom.trim().length<2) {
-                                return ; }
+
                       this.isValidFormSubmitted = true;
                       this.submitted = true;
                       this.save();

@@ -32,7 +32,7 @@
     <div class="card card-2">
       <div class="card-heading"></div>
       <div class="card-body" [hidden]="submitted">
-        <h2 class="title">Ajouter Participant</h2>
+        <h2 class="title">Ajouter Session</h2>
         <form  (ngSubmit)="onSubmit()"  #myForm="ngForm" >
 
           <div class="input-group">
@@ -72,7 +72,7 @@
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label >Formation</label>
-                  <select name="formation" required #unfor="ngModel" [(ngModel)]="session.formation" (ngModelChange)="setNewFormation($event)" #for="ngModel" class="form-select browser-default custom-select ">
+                  <select name="formation" required #unfor="ngModel" [(ngModel)]="session.formation" (ngModelChange)="setNewFormation($event)" #for="ngModel" class="form-select browser-default custom-select input--style-2 ">
                     <option [ngValue]="undefined">Formation</option>
                     <option *ngFor="let formation of formations"  [ngValue]="formation" >  {{formation.titre}} </option>
                   </select>
@@ -89,7 +89,7 @@
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label >Organisme</label>
-                  <select name="organisme" required #unorg="ngModel" [(ngModel)]="session.organisme" (ngModelChange)="setNewOrganisme($event)" #org="ngModel" class="form-select browser-default custom-select ">
+                  <select name="organisme" required #unorg="ngModel" [(ngModel)]="session.organisme" (ngModelChange)="setNewOrganisme($event)" #org="ngModel" class="form-select browser-default custom-select input--style-2 ">
                     <option [ngValue]="undefined">Organisme</option>
                     <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
                   </select>
@@ -106,7 +106,7 @@
               <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                   <label >Formateur</label>
-                  <select name="formateur" required #unfr="ngModel" [(ngModel)]="session.formateur" (ngModelChange)="setNewFormateur($event)" #fr="ngModel" class="form-select browser-default custom-select ">
+                  <select name="formateur" required #unfr="ngModel" [(ngModel)]="session.formateur" (ngModelChange)="setNewFormateur($event)" #fr="ngModel" class="form-select browser-default custom-select input--style-2 ">
                     <option [ngValue]="undefined">Formateur</option>
                     <option *ngFor="let formateur of formateurs"  [ngValue]="formateur" >  {{formateur.nom}} {{formateur.prenom}}</option>
                   </select>
@@ -159,13 +159,13 @@
             </div>
           </div>
 
-          <div class="text-center">
-            <div class="p-t-30">
+          <div class="form-group row">
+            <div class="col">
               <button class="btn btn--radius btn--green " type="submit">
                 <span class="glyphicon glyphicon-ok-circle"></span> Submit
               </button>
             </div>
-            <div class="p-t-30">
+            <div class="col">
               <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                 <span class="glyphicon glyphicon-ok-circle"></span> Cancel
               </button>

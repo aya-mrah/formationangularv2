@@ -2,40 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Sign Up Form by Colorlib</title>
+
+
 </head>
 <body>
 
-<div margin-top="3px">
+<div margin-top="2px">
 
-  <!-- Sign up form -->
-  <section class="signup">
-    <div class="container">
-      <div class="signup-content">
-        <div class="signup-form">
-          <h2 class="form-title">Sign up</h2>
-          <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+  <div >
+    <!-- Sing in  Form -->
+    <section class="sign-in">
+      <div class="container mt-4">
+        <div class="signin-content">
+          <div class="signin-image">
+            <figure><img src="assets/signup.PNG" alt="sing up image"></figure>
+            <!-- <a >Create an account</a>-->
+          </div>
+
+          <div class="signin-form">
+            <h2 class="form-title">sign up</h2>
+            <form #myForm="ngForm" (ngSubmit)="onSubmit()">
 
 
-            <div class="form-group">
-              <label for="username" class="font-weight-bold">Username </label><br><br><br>
-              <input type="text"  class="input--style-2" id="username" placeholder="Username" required minlength="2" #uname="ngModel" [(ngModel)]="form.username" name="username" #name="ngModel">
-              <div class="error"   *ngIf="uname.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
-                <div *ngIf="uname.errors.required">Username est obligatoire</div>
-                <div *ngIf="uname.errors.minlength">Minimum 2 lettres</div>
+              <div class="form-group">
+                <label for="username" class="font-weight-bold">Username </label><br><br><br>
+                <input type="text"  class="input--style-2" id="username" placeholder="Username" required minlength="2" #uname="ngModel" [(ngModel)]="form.username" name="username" #name="ngModel">
+                <div class="error"   *ngIf="uname.errors"  class="card-panel red accent-1" [hidden]="name.valid || name.pristine" [ngClass] = "'error'">
+                  <div *ngIf="uname.errors.required">Username est obligatoire</div>
+                  <div *ngIf="uname.errors.minlength">Minimum 2 lettres</div>
+                </div>
               </div>
-            </div>
 
 
-            <div class="form-group">
-              <label for="email" class="font-weight-bold">Email </label><br><br><br>
-              <input type="text"  class="input--style-2" id="email" placeholder="Email" required #uemail="ngModel" [(ngModel)]="form.email" name="eemail" #namee="ngModel">
-              <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
-                <div *ngIf="uemail.errors.required">Email est obligatoire</div>
-                <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
-              </div>
+              <div class="form-group">
+                <label for="email" class="font-weight-bold">Email </label><br><br><br>
+                <input type="text"  class="input--style-2" id="email" placeholder="Email" required #uemail="ngModel" [(ngModel)]="form.email" name="eemail" #namee="ngModel">
+                <div class="error"   *ngIf="uemail.errors"  class="card-panel red accent-1" [hidden]="namee.valid || namee.pristine" [ngClass] = "'error'">
+                  <div *ngIf="uemail.errors.required">Email est obligatoire</div>
+                  <div *ngIf="uemail.errors.email">Email format email@gmail.com</div>
+                </div>
               </div>
 
               <div class="form-group">
@@ -48,31 +54,29 @@
               </div>
 
 
-              <div class="form-group">
-                <div class="p-t-30">
+              <div class="form-group row">
+                <div class="col">
                   <button class="btn btn--radius btn--green " type="submit">
                     <span class="glyphicon glyphicon-ok-circle"></span> Sign Up
                   </button>
                 </div>
-                <div class="p-t-30">
+                <div class="col">
                   <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                     <span class="glyphicon glyphicon-ok-circle"></span> Cancel
                   </button>
                 </div>
               </div>
 
+              <div class="alert alert-warning" *ngIf="submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+              </div>
 
-            <div class="alert alert-warning" *ngIf="submitted && isSignUpFailed">
-              Signup failed!<br />{{ errorMessage }}
-            </div>
 
-
-        </form>
-          <div class="signup-image">
-            <figure><img src="assets/signup.PNG" alt="sing up image"></figure>
+            </form>
           </div>
-
         </div>
       </div>
-    </div>
-  </section></div></body></html>
+    </section>
+
+  </div></div></body>
+</html>

@@ -81,7 +81,7 @@
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Formation</label>
-                      <select name="formation" required #unfor="ngModel" [(ngModel)]="session.formation"  #for="ngModel" class="form-select browser-default custom-select ">
+                      <select name="formation" required #unfor="ngModel" [(ngModel)]="session.formation"  #for="ngModel" class="form-select browser-default custom-select input--style-2 ">
                         <option hidden [ngValue]="session.formation"  [attr.selected]="true">  {{session.formation.titre}} </option>
                         <option *ngFor="let formation of formations"  [ngValue]="formation"  [attr.selected]="session.formation.id==formation.id ? true : null">   {{session.formation.titre}}</option>
                       </select>
@@ -98,7 +98,7 @@
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Organisme</label>
-                      <select name="organisme" required #unorg="ngModel" [(ngModel)]="session.organisme"  #org="ngModel" class="form-select browser-default custom-select ">
+                      <select name="organisme" required #unorg="ngModel" [(ngModel)]="session.organisme"  #org="ngModel" class="form-select browser-default custom-select input--style-2 ">
                         <option hidden [ngValue]="session.organisme"  [attr.selected]="true">  {{session.organisme.libelle}} </option>
                         <option *ngFor="let organisme of organismes"  [ngValue]="organisme"  [attr.selected]="session.organisme.id==organisme.id ? true : null"> {{organisme.libelle}}  </option>
                       </select>
@@ -115,7 +115,7 @@
                   <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
                       <label >Formateur</label>
-                      <select name="formateur" required #unfr="ngModel" [(ngModel)]="session.formateur"  #fr="ngModel" class="form-select browser-default custom-select ">
+                      <select name="formateur" required #unfr="ngModel" [(ngModel)]="session.formateur"  #fr="ngModel" class="form-select browser-default custom-select input--style-2 ">
                         <option hidden [ngValue]="session.formateur"  [attr.selected]="true">  {{session.formateur.prenom}} {{session.formateur.nom}}</option>
                         <option *ngFor="let formateur of formateurs"  [ngValue]="formateur"  [attr.selected]="session.formateur.id==formateur.id ? true : null"> {{formateur.prenom}} {{formateur.nom}} </option>
                       </select>
@@ -169,14 +169,14 @@
 
 
 
-              <div class="text-center">
+              <div class="form-group row">
 
-                <div class="p-t-30">
+                <div class="col">
                   <button class="btn btn--radius btn--green" type="submit">
                     <span class="glyphicon glyphicon-ok-circle"></span> Submit
                   </button>
                 </div>
-                <div class="p-t-30">
+                <div class="col">
                   <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                     <span class="glyphicon glyphicon-ok-circle"></span> Cancel
                   </button>

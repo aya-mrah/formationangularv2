@@ -73,7 +73,7 @@
                 <div class="input-group">
                   <div class="rs-select2 js-select-simple select--no-search">
                     <label >Type</label>
-                    <select name="select" required #untype="ngModel" [(ngModel)]="formateur.type" #type="ngModel" class="form-select browser-default custom-select ">
+                    <select name="select" required #untype="ngModel" [(ngModel)]="formateur.type" #type="ngModel" class="form-select browser-default custom-select input--style-2 ">
                       <option [ngValue]="undefined">Type</option>
                       <option value="Interne">  Interne </option>
                       <option value="Externe">  Externe </option>
@@ -92,7 +92,7 @@
                 <div class="input-group">
                   <div class="rs-select2 js-select-simple select--no-search">
                     <label >Organisme</label>
-                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="formateur.organisme" (ngModelChange)="setNewOrganisme($event)" #org="ngModel" class="form-select browser-default custom-select ">
+                    <select name="organisme" required #unorg="ngModel" [(ngModel)]="formateur.organisme" (ngModelChange)="setNewOrganisme($event)" #org="ngModel" class="form-select browser-default custom-select input--style-2 ">
                       <option [ngValue]="undefined">Organisme</option>
                       <option *ngFor="let organisme of organismes"  [ngValue]="organisme" >  {{organisme.libelle}} </option>
                     </select>
@@ -109,13 +109,13 @@
 
 
 
-            <div class="text-center">
-              <div class="p-t-30">
+            <div class="form-group row">
+              <div class="col">
                 <button class="btn btn--radius btn--green " type="submit">
                   <span class="glyphicon glyphicon-ok-circle"></span> Submit
                 </button>
               </div>
-              <div class="p-t-30">
+              <div class="col">
                 <button class="btn btn--radius btn--gray" type="reset" (click)="onReset()">
                   <span class="glyphicon glyphicon-ok-circle"></span> Cancel
                 </button>

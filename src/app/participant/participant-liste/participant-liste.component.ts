@@ -33,7 +33,7 @@ const ELEMENT_DATA: IParticipant[] = [
 })
 export class ParticipantListeComponent implements OnInit {
   participants: IParticipant[];
-  displayedColumns:string[] = ['id', 'nom','prenom','mail','tel','type','profil','pays','organisme','star'];
+  displayedColumns:string[] = ['id', 'nom','prenom','mail','tel','type','profil','organisme','pays','star'];
   dataSource :MatTableDataSource<IParticipant>
  // participants: Observable<Participant[]>;
 
