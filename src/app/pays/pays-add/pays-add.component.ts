@@ -60,7 +60,7 @@ export class PaysAddComponent implements OnInit {
         }
 
         gotoList() {
-          this.router.navigate(['/paysliste']);
+         // this.router.navigate(['/paysliste']);
         }
         onReset() {
                 this.submitted = false;
@@ -74,14 +74,15 @@ export class PaysAddComponent implements OnInit {
         }
 
 savePays() {
-//console.log("Fie to upload : "+this.selectedFile.name);
+console.log("Fie to upload : "+this.selectedFile.name);
 const uploadPays = new FormData();
 uploadPays.set('imageFile',this.selectedFile)
 uploadPays.set('libelle',this.pays.libelle)
 this.httpClient.post('http://localhost:8090/addpays',uploadPays).subscribe(
   (response) => {
-
+  
   console.log(response);
+  this.router.navigate(['/paysliste']);
   },
   (err) => {
   console.log('erreur '+err);

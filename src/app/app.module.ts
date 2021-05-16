@@ -111,6 +111,9 @@ import { SessionAddComponent } from './session/session-add/session-add.component
 import { SessionUpdateComponent } from './session/session-update/session-update.component';
 import { SessionDetailsComponent } from './session/session-details/session-details.component';
 import { DialogParticipantSessionComponent } from './dialog-participant-session/dialog-participant-session.component';
+
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 //--------
 @NgModule({
   declarations: [
@@ -161,6 +164,7 @@ import { DialogParticipantSessionComponent } from './dialog-participant-session/
     DialogParticipantSessionComponent
   ],
   imports: [
+    MatTableExporterModule,
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,

@@ -16,9 +16,6 @@ export interface IPays {
   libelle: string;
 
 }
-const ELEMENT_DATA: IPays[] = [
-  {id: 1, libelle: 'Hydrogen'},
-  {id: 2, libelle: 'Helium'}];
 
 @Component({
   selector: 'app-pays-liste',

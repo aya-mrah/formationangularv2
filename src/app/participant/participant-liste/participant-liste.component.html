@@ -1,5 +1,9 @@
 
-<div class="container-fluid" >
+<div class="container-fluid"  >
+
+
+  <h2 class="text-center">Liste des Participants</h2>
+ 
   <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" id="butadd" (click)="addParticipant()">
     <mat-icon>add</mat-icon>
   </button>
@@ -7,8 +11,8 @@
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Participant" #input>
   </mat-form-field>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="1130px" matSort>
+  <button class="btn btn-success" (click)="exporter.exportTable('xls')">export to xls</button>
+  <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter" matSort>
 
 
     <!-- Position Column -->
