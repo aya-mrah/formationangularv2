@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './_services/token-storage.service';
 
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+  position = new FormControl("before");
 
   constructor(private tokenStorageService: TokenStorageService , private router :Router) { }
 

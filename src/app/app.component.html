@@ -4,22 +4,22 @@
 
 <mat-toolbar color="primary">
   <!---- <button mat-flat-button color="primary"  routerLink="home" ><mat-icon>home</mat-icon>&nbsp;</button>-->
-  <button mat-icon-button class="example-icon" *ngIf="isLoggedIn" aria-label="Example icon-button with menu icon" mat-button (click)="sidenav.toggle()">
+  <button mat-icon-button class="example-icon" *ngIf="isLoggedIn" aria-label="Example icon-button with menu icon" matTooltip="Menu" mat-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Formation </span>
+  <span>E-Formation </span>
 
   <span class="example-spacer"></span>
-  <button mat-flat-button color="primary" class="example-icon favorite-icon" routerLink="home" ><mat-icon>home</mat-icon></button>
+  <button mat-flat-button color="primary" class="example-icon favorite-icon" routerLink="home" matTooltip="Home Page" ><mat-icon>home</mat-icon></button>
 
   <button mat-flat-button color="primary" class="example-icon favorite-icon"  id="reg" routerLink="register" *ngIf="!isLoggedIn">
   Sign up
   </button>
   <button mat-flat-button color="primary" class="example-icon favorite-icon"  routerLink="login" *ngIf="!isLoggedIn">Login</button>
 
-  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn"><mat-icon>settings</mat-icon></button>
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn" matTooltip="Settings" ><mat-icon>settings</mat-icon></button>
 <mat-menu #menu="matMenu">
-<button mat-menu-item routerLink="profile" ><mat-icon>person_outline</mat-icon>Profil</button>
+<button mat-menu-item routerLink="profile"  matTooltip="Show profil" [matTooltipPosition]="position.value"><mat-icon>person_outline</mat-icon>Profil</button>
 <button mat-menu-item (click)="logout()"><mat-icon>input</mat-icon>Logout</button>
 </mat-menu>
 </mat-toolbar>

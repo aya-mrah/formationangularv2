@@ -353,7 +353,13 @@ margin-left:10px;
   background-size: cover;
   position: relative;
 }
-
+#imghome{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin-top: 300px;
+  margin-left: 250px;
+}
 
 #hero:before {
   content: "";
